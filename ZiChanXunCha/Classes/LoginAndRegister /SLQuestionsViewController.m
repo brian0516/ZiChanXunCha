@@ -23,6 +23,9 @@ static CGFloat const KBgImageViewBottomOffSet = 100.0f;
 
 @property (nonatomic,strong)UIImageView * bgImageView;
 
+@property (nonatomic,strong)UIView * questionView;
+
+
 @end
 
 @implementation SLQuestionsViewController
@@ -32,6 +35,8 @@ static CGFloat const KBgImageViewBottomOffSet = 100.0f;
     
     [self _layoutSubViews];
  
+    
+    
 }
 
 -(void)_layoutSubViews{
@@ -46,6 +51,12 @@ static CGFloat const KBgImageViewBottomOffSet = 100.0f;
     }];
     
     
+    [self.questionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(weakSelf.bgImageView);
+        make.left.mas_equalTo(weakSelf.bgImageView);
+        make.right.mas_equalTo(weakSelf.bgImageView);
+        make.height.mas_equalTo(weakSelf.bgImageView.mas_height).offset(-100);
+    }];
 
 }
 
@@ -61,6 +72,13 @@ static CGFloat const KBgImageViewBottomOffSet = 100.0f;
     return _bgImageView;
 }
 
-
+-(UIView *)questionView{
+    if (!_questionView) {
+        _questionView = [[UIView alloc]init];
+        _questionView.backgroundColor = [[UIColor redColor]colorWithAlphaComponent:0.8];
+        [self.view addSubview:_questionView];
+    }
+    return _questionView;
+}
 
 @end

@@ -39,10 +39,12 @@ static CGFloat const KAspect = 0.5625; //宽高比;
     [self configPlayer];
     
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeSystem];
-    btn.frame = CGRectMake(0,kScreenHeight-50, 44, 44);
+    btn.frame = CGRectMake(0,kScreenHeight-150, 44, 44);
     btn.centerX = self.view.centerX;
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    btn.backgroundColor = [UIColor redColor];
+//    btn.backgroundColor = [UIColor redColor];
+    [btn setImage:[UIImage imageNamed:@"xc_delete"] forState:UIControlStateNormal];
+    btn.tintColor = [UIColor whiteColor];
     [self.view addSubview:btn];
     
     

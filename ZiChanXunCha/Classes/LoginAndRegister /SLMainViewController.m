@@ -215,14 +215,9 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
 -(void)playVideo{
 
     SLPlayVideoController * playVideoController = [[SLPlayVideoController alloc]init];
-    
     [self addChildViewController:playVideoController];
     [self.view addSubview:playVideoController.view];
     
-    
-//    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:playVideoController];
-//
-//    [self presentViewController:nav animated:YES completion:nil];
 }
 
 
@@ -257,7 +252,7 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
 //输入用户名
 -(SLLoginTextField *)userNameTF{
     if (!_userNameTF) {
-        _userNameTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldCorner PreFixImage:[UIImage imageNamed:@"logo"] placeholder:@"请输入用户名/手机号" subFixImage:nil];
+        _userNameTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldCorner PreFixImage:[UIImage imageNamed:@"xc_usename"] placeholder:@"请输入用户名/手机号" subFixImages:nil];
         [self.view addSubview:_userNameTF];
     }
     return _userNameTF;
@@ -266,7 +261,8 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
 //输入密码
 -(SLLoginTextField *)passwordTF{
     if (!_passwordTF) {
-        _passwordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldCorner PreFixImage:[UIImage imageNamed:@"xc_usename"] placeholder:@"请输入密码" subFixImage:[UIImage imageNamed:@"logo"]];
+        
+        _passwordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldCorner PreFixImage:[UIImage imageNamed:@"xc_password"] placeholder:@"请输入密码" subFixImages:@[[UIImage imageNamed:@"xc_watch"],[UIImage imageNamed:@"xc_nosee"]]];
         _passwordTF.secureTextEntry = YES;
         
         
@@ -285,9 +281,8 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
         _loginBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [_loginBtn setTitle:KLoginBtnTitle forState:UIControlStateNormal];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_loginBtn setTitleColor:[UIColor colorWithWhite:0.90 alpha:1] forState:UIControlStateHighlighted];
         [_loginBtn setBackgroundColor:[UIColor colorWithHexString:KLoginBtnBgColor] ForState:UIControlStateNormal];
-        [_loginBtn setBackgroundColor:[[UIColor colorWithHexString:KLoginBtnBgColor] colorWithAlphaComponent:0.8] ForState:UIControlStateHighlighted];
+        _loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
         [self.view addSubview:_loginBtn];
     }
     return _loginBtn;
@@ -332,8 +327,7 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
 -(UIButton *)playVideoBtn{
     if (!_playVideoBtn) {
         _playVideoBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_playVideoBtn setBackgroundColor:[UIColor redColor] ForState:UIControlStateNormal];
-        [_playVideoBtn setBackgroundColor:[UIColor greenColor] ForState:UIControlStateHighlighted];
+        [_playVideoBtn setBackgroundImage:[UIImage imageNamed:@"playVideo"] forState:UIControlStateNormal];
         [_playVideoBtn addTarget:self action:@selector(playVideo) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_playVideoBtn];
     }

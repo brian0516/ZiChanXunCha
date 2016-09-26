@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "0A4A3FCFA29242989570F5AEE623DC6C82FF05E7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "886f8186-a019-3a42-9a32-4364d30223f9++2315" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "0A4A3FCFA29242989570F5AEE623DC6C82FF05E7" : 0,
+    "886f8186-a019-3a42-9a32-4364d30223f9++2315" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "709A9403-5DEA-48CA-8C6E-8A93C9C1D5DC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "0A4A3FCFA29242989570F5AEE623DC6C82FF05E7" : "ZiChanXunCha\/",
+    "886f8186-a019-3a42-9a32-4364d30223f9++2315" : "ZiChanXunCha\/ZiChanXunCha\/Vendors\/3DESiOS\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ZiChanXunCha",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ZiChanXunCha.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/brian0516\/ZiChanXunCha.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "0A4A3FCFA29242989570F5AEE623DC6C82FF05E7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn:\/\/sinofreely.f3322.org\/dlcmios",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "886f8186-a019-3a42-9a32-4364d30223f9++2315"
+    }
+  ]
+}

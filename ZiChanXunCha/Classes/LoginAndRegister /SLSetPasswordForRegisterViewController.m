@@ -12,7 +12,7 @@
 
 
 // MARK: 静态字符串
-static NSString * const KLogoName   = @"logo";
+static NSString * const KLogoName   = @"xc_logo";
 static NSString * const KNoticeText = @"*6-16位字符,数字、字母、符号至少有两种元素组合";
 static NSString * const KRegisterBtnTitle = @"注册";
 
@@ -132,8 +132,6 @@ static CGFloat const KRegisterBtnTopOffSet = 30;
 -(UIImageView *)logoImageView{
     if (!_logoImageView) {
         _logoImageView = [[UIImageView alloc]init];
-        // TODO SL-添加图片名称,改变背景颜色
-        _logoImageView.backgroundColor = [[UIColor redColor]colorWithAlphaComponent:0.9];
         _logoImageView.image = [UIImage imageNamed:KLogoName];
         [self.view addSubview:_logoImageView];
     }
@@ -144,7 +142,7 @@ static CGFloat const KRegisterBtnTopOffSet = 30;
 //输入密码
 -(SLLoginTextField *)passwordTF{
     if (!_passwordTF) {
-        _passwordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldStyleDefault PreFixImage:[UIImage imageNamed:@"logo"] placeholder:@"请输入密码" subFixImage:nil];
+        _passwordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldStyleDefault PreFixImage:[UIImage imageNamed:@"xc_password"] placeholder:@"请输入密码" subFixImages:nil];
         _passwordTF.secureTextEntry = YES;
         [self.view addSubview:_passwordTF];
     }
@@ -154,7 +152,7 @@ static CGFloat const KRegisterBtnTopOffSet = 30;
 //再次输入密码
 -(SLLoginTextField *)confirmPasswordTF{
     if (!_confirmPasswordTF) {
-        _confirmPasswordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldStyleDefault PreFixImage:[UIImage imageNamed:@"logo"] placeholder:@"请再次输入密码" subFixImage:nil];
+        _confirmPasswordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldStyleDefault PreFixImage:[UIImage imageNamed:@"xc_password"] placeholder:@"请再次输入密码" subFixImages:nil];
         _confirmPasswordTF.secureTextEntry = YES;
         [self.view addSubview:_confirmPasswordTF];
     }
@@ -181,8 +179,6 @@ static CGFloat const KRegisterBtnTopOffSet = 30;
         [_registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_registerBtn addTarget:self action:@selector(registerBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [_registerBtn setBackgroundColor:[UIColor colorWithHexString:KRegisterBtnBgColor] ForState:UIControlStateNormal];
-        [_registerBtn setBackgroundColor:[[UIColor colorWithHexString:KRegisterBtnBgColor] colorWithAlphaComponent:0.8] ForState:UIControlStateHighlighted];
-        
         [self.view addSubview:_registerBtn];
     }
     return _registerBtn;

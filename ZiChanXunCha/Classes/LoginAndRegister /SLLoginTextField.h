@@ -37,6 +37,6 @@ typedef void(^buttonBlock)();
  *
  *  @return self
  */
--(instancetype)initWithStyle:(SLLoginTextFieldStyle)style PreFixImage:(UIImage*)image placeholder:(NSString*)placeholder subFixImage:(UIImage*)subImage;
+-(instancetype)initWithStyle:(SLLoginTextFieldStyle)style PreFixImage:(UIImage*)image placeholder:(NSString*)placeholder subFixImages:(NSArray*)subImages;
 
 @end

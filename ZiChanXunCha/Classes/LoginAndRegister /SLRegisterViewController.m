@@ -11,7 +11,7 @@
 #import "SLSetPasswordForRegisterViewController.h"
 
 // MARK: 静态字符串
-static NSString * const KLogoName   = @"logo";
+static NSString * const KLogoName   = @"xc_logo";
 static NSString * const KNextButtonTitle = @"下一步";
 static NSString * const KNextBtnBgColor    = @"0177DC";
 static NSString * const KAgreeBtnImageNormal = @"0177dc";
@@ -185,7 +185,7 @@ static CGFloat const KGetIdentifyBtnWidth = 95.0f;
 //输入电话
 -(SLLoginTextField *)enterPhoneNumberTF{
     if (!_enterPhoneNumberTF) {
-        _enterPhoneNumberTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldStyleDefault PreFixImage:[UIImage imageNamed:@"logo"] placeholder:@"请输入手机号" subFixImage:nil];
+        _enterPhoneNumberTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldStyleDefault PreFixImage:[UIImage imageNamed:@"xc_phone"] placeholder:@"请输入手机号" subFixImages:nil];
         [self.view addSubview:_enterPhoneNumberTF];
     }
     return _enterPhoneNumberTF;
@@ -194,7 +194,7 @@ static CGFloat const KGetIdentifyBtnWidth = 95.0f;
 //输入验证码
 -(SLLoginTextField *)identifyCodeTF{
     if (!_identifyCodeTF) {
-        _identifyCodeTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldStyleDefault PreFixImage:[UIImage imageNamed:@"logo"] placeholder:@"请输入短信验证码" subFixImage:nil];
+        _identifyCodeTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldStyleDefault PreFixImage:[UIImage imageNamed:@"xc_yzm"] placeholder:@"请输入短信验证码" subFixImages:nil];
         [self.view addSubview:_identifyCodeTF];
     }
     return _identifyCodeTF;
@@ -204,8 +204,6 @@ static CGFloat const KGetIdentifyBtnWidth = 95.0f;
 -(UIImageView *)logoImageView{
     if (!_logoImageView) {
         _logoImageView = [[UIImageView alloc]init];
-        // TODO SL-添加图片名称,改变背景颜色
-        _logoImageView.backgroundColor = [[UIColor redColor]colorWithAlphaComponent:0.9];
         _logoImageView.image = [UIImage imageNamed:KLogoName];
         [self.view addSubview:_logoImageView];
     }
@@ -220,8 +218,6 @@ static CGFloat const KGetIdentifyBtnWidth = 95.0f;
         [_nextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_nextButton addTarget:self action:@selector(nextStep:) forControlEvents:UIControlEventTouchUpInside];
         [_nextButton setBackgroundColor:[UIColor colorWithHexString:KNextBtnBgColor] ForState:UIControlStateNormal];
-        [_nextButton setBackgroundColor:[[UIColor colorWithHexString:KNextBtnBgColor] colorWithAlphaComponent:0.8] ForState:UIControlStateHighlighted];
-
         [self.view addSubview:_nextButton];
     }
     return _nextButton;

@@ -34,7 +34,7 @@ static CGFloat const KVerticalLineTopAndBottomMargin = 10.0f;
 
 @implementation SLLoginTextField
 
--(instancetype)initWithStyle:(SLLoginTextFieldStyle)style PreFixImage:(UIImage*)image placeholder:(NSString*)placeholder subFixImage:(UIImage*)subImage{
+-(instancetype)initWithStyle:(SLLoginTextFieldStyle)style PreFixImage:(UIImage*)image placeholder:(NSString*)placeholder subFixImages:(NSArray*)subImages{
 
     self = [super init];
     if (self) {
@@ -53,8 +53,9 @@ static CGFloat const KVerticalLineTopAndBottomMargin = 10.0f;
             self.preFixImageView.image = image;
         }
         
-        if (subImage) {
-            [self.subButton setImage:subImage forState:UIControlStateNormal];
+        if (subImages.count!=0) {
+            [self.subButton setImage:[subImages firstObject] forState:UIControlStateNormal];
+            [self.subButton setImage:[subImages lastObject] forState:UIControlStateSelected];
         }
         
         [self textField];
@@ -103,18 +104,21 @@ static CGFloat const KVerticalLineTopAndBottomMargin = 10.0f;
     
     
     if (_preFixImageView) {
-        [self.preFixImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.size.mas_equalTo(CGSizeMake(weakSelf.height, weakSelf.height));
-            make.leftMargin.equalTo(weakSelf);
-            make.centerY.equalTo(weakSelf);
-        }];
         
         [self.verticalLine mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(@(KVerticalLineWidth));
             make.topMargin.equalTo(weakSelf).offset(KVerticalLineTopAndBottomMargin);
             make.bottomMargin.equalTo(weakSelf).offset(-KVerticalLineTopAndBottomMargin);
-            make.leftMargin.equalTo(weakSelf.preFixImageView.mas_rightMargin);
+            make.leftMargin.offset(weakSelf.height);
         }];
+        
+        [self.preFixImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.size.mas_equalTo(CGSizeMake(weakSelf.height, weakSelf.height));
+            make.leftMargin.offset(15);
+            make.centerY.equalTo(weakSelf);
+        }];
+        
+      
         
     }
     
@@ -151,6 +155,10 @@ static CGFloat const KVerticalLineTopAndBottomMargin = 10.0f;
 
 #pragma -mark  ------actions-------
 -(void)subButtonClickd:(id)sender{
+    
+    UIButton * btn = sender;
+    btn.selected = !btn.selected;
+    
     if (self.buttonBlock) {
         self.buttonBlock();
     }
