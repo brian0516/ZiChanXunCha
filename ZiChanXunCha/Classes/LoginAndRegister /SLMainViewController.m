@@ -14,12 +14,14 @@
 
 // MARK: 静态字符串
 static NSString * const KBgColor    = @"006cba"; //背景颜色
-static NSString * const KLogoName   = @"logo";
+static NSString * const KLogoName   = @"xc_logo";
 static NSString * const KSlogan     = @"大田金融资产管理有限公司";
 static NSString * const KLoginBtnTitle      =  @"登录";
 static NSString * const KLoginBtnBgColor    = @"f6ab00";
 static NSString * const KForgetPassWordBtnTitle = @"忘记密码?";
 static NSString * const KRegisterBtnTitle       = @"申请准入";
+static NSString * const KNoticeImageName = @"notice";
+
 
 // MARK: 布局
 
@@ -36,6 +38,8 @@ static CGFloat  const   KLogAndSloganGap = 15.0f; //logo和slogan间距
 
 static CGFloat const KVerticalLineAndBtnGap = 30.0f; //竖线与按钮间距
 
+static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
+
 
 @interface SLMainViewController ()
 
@@ -46,11 +50,10 @@ static CGFloat const KVerticalLineAndBtnGap = 30.0f; //竖线与按钮间距
 @property (nonatomic,strong) UIButton * loginBtn;           //loginButton
 @property (nonatomic,strong) UIButton * forgetPasswordBtn;  //getpassword;
 @property (nonatomic,strong) UIButton * registerBtn;        //register
-@property (nonatomic,strong) UIView * notice;               //温馨提示
 @property (nonatomic,strong) UIButton * playVideoBtn;
 @property (nonatomic,strong) UIView * verticalLine;         //分隔线
-
 @property (nonatomic,strong) UIView * temView; //透明层
+@property (nonatomic,strong) UIImageView * noticeImageView;
 
 @end
 
@@ -149,6 +152,14 @@ static CGFloat const KVerticalLineAndBtnGap = 30.0f; //竖线与按钮间距
         make.bottom.equalTo(weakSelf.view).offset(-KPlayBtnBottomOffSet);
     }];
     
+    //布局提示
+    [self.noticeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(weakSelf.playVideoBtn.mas_top).offset(-KNoticeImageViewBottomOffSet);
+        make.centerX.mas_equalTo(weakSelf.view);
+        
+    }];
+    
+    
     //布局"logo透明层"
     [self.temView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.topMargin.equalTo(weakSelf.view);
@@ -170,7 +181,7 @@ static CGFloat const KVerticalLineAndBtnGap = 30.0f; //竖线与按钮间距
         make.top.equalTo(weakSelf.logoImageView.mas_bottom).offset(KLogAndSloganGap);
         make.centerX.equalTo(weakSelf.view);
     }];
-    
+
 }
 
 
@@ -194,7 +205,6 @@ static CGFloat const KVerticalLineAndBtnGap = 30.0f; //竖线与按钮间距
 
 }
 
-// TODO 注册
 -(void)myRegister{
     SLRegisterViewController * registerViewController = [[SLRegisterViewController alloc]init];
     [self.navigationController pushViewController:registerViewController animated:YES];
@@ -227,8 +237,6 @@ static CGFloat const KVerticalLineAndBtnGap = 30.0f; //竖线与按钮间距
 -(UIImageView *)logoImageView{
     if (!_logoImageView) {
         _logoImageView = [[UIImageView alloc]init];
-        // TODO SL-添加图片名称,改变背景颜色
-        _logoImageView.backgroundColor = [[UIColor redColor]colorWithAlphaComponent:0.9];
         _logoImageView.image = [UIImage imageNamed:KLogoName];
         [self.view addSubview:_logoImageView];
     }
@@ -247,7 +255,6 @@ static CGFloat const KVerticalLineAndBtnGap = 30.0f; //竖线与按钮间距
 }
 
 //输入用户名
-// TODO 这个类要重新
 -(SLLoginTextField *)userNameTF{
     if (!_userNameTF) {
         _userNameTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldCorner PreFixImage:[UIImage imageNamed:@"logo"] placeholder:@"请输入用户名/手机号" subFixImage:nil];
@@ -257,10 +264,9 @@ static CGFloat const KVerticalLineAndBtnGap = 30.0f; //竖线与按钮间距
 }
 
 //输入密码
-// TODO 这个类要重新
 -(SLLoginTextField *)passwordTF{
     if (!_passwordTF) {
-        _passwordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldCorner PreFixImage:[UIImage imageNamed:@"logo"] placeholder:@"请输入密码" subFixImage:[UIImage imageNamed:@"logo"]];
+        _passwordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldCorner PreFixImage:[UIImage imageNamed:@"xc_usename"] placeholder:@"请输入密码" subFixImage:[UIImage imageNamed:@"logo"]];
         _passwordTF.secureTextEntry = YES;
         
         
@@ -343,5 +349,15 @@ static CGFloat const KVerticalLineAndBtnGap = 30.0f; //竖线与按钮间距
     return _temView;
 }
 
+-(UIImageView *)noticeImageView{
+    if (!_noticeImageView) {
+        _noticeImageView = [[UIImageView alloc]init];
+        _noticeImageView.image = [UIImage imageNamed:KNoticeImageName];
+        [self.view addSubview:_noticeImageView];
+    }
+    return _noticeImageView;
+
+
+}
 
 @end

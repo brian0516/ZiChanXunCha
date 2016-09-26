@@ -8,6 +8,9 @@
 
 #import "SLSetPasswordForRegisterViewController.h"
 #import "SLLoginTextField.h"
+#import "SLQuestionsViewController.h"
+
+
 // MARK: 静态字符串
 static NSString * const KLogoName   = @"logo";
 static NSString * const KNoticeText = @"*6-16位字符,数字、字母、符号至少有两种元素组合";
@@ -118,8 +121,9 @@ static CGFloat const KRegisterBtnTopOffSet = 30;
 #pragma -mark acttions---
 
 -(void)registerBtnClicked:(id)sender{
-
-
+    SLQuestionsViewController * Questions = [[SLQuestionsViewController alloc]init];
+    [self.navigationController pushViewController:Questions animated:YES];
+    
 }
 
 

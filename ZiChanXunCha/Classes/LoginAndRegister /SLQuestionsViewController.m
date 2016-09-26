@@ -8,7 +8,20 @@
 
 #import "SLQuestionsViewController.h"
 
+// MARK: 静态字符串
+static NSString * const KBgImageViewName = @"questionsBg";
+
+
+
+// MARK: 布局
+static CGFloat const KBgImageViewTopOffSet = 80.0f;
+static CGFloat const KBgImageViewMargin = 30.0f;
+static CGFloat const KBgImageViewBottomOffSet = 100.0f;
+
+
 @interface SLQuestionsViewController ()
+
+@property (nonatomic,strong)UIImageView * bgImageView;
 
 @end
 
@@ -16,22 +29,38 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self _layoutSubViews];
+ 
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)_layoutSubViews{
+    
+    DefineWeakSelf;
+
+    [self.bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(KBgImageViewTopOffSet);
+        make.bottom.offset(-KBgImageViewBottomOffSet);
+        make.left.offset(KBgImageViewMargin);
+        make.right.offset(-KBgImageViewMargin);
+    }];
+    
+    
+
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma -mark lazyLoad
+
+-(UIImageView *)bgImageView{
+    if (!_bgImageView) {
+        _bgImageView = [[UIImageView alloc]init];
+        _bgImageView.image = [UIImage imageNamed:KBgImageViewName];
+        [self.view addSubview:_bgImageView];
+    }
+    return _bgImageView;
 }
-*/
+
+
 
 @end
