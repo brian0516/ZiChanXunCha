@@ -1,0 +1,27 @@
+//
+//  ZiChanXunCha.pch
+//  ZiChanXunCha
+//
+//  Created by shuanglong on 16/9/7.
+//  Copyright © 2016年 shuanglong. All rights reserved.
+//
+
+#ifndef ZiChanXunCha_pch
+#define ZiChanXunCha_pch
+
+#import "YYKit.h"
+#import "SLMacroDefinition.h"
+#import "SLConst.h"
+#import "PPNetworkHelper.h"
+#import "Masonry.h"
+#import "NSString+SLString.h"
+#import "XHToast.h"
+#import "SLHelper.h"
+#import "MJRefresh.h"
+#import "SLNavigationController.h"
+#import "UIButton+SLButton.h"
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* ZiChanXunCha_pch */
+
