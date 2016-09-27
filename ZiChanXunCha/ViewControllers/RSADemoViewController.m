@@ -8,8 +8,6 @@
 
 #import "RSADemoViewController.h"
 #import "AES.h"
-#import "DES3Util.h"
-#import "NSData+AES128.h"
 
 @interface RSADemoViewController ()
 
@@ -74,11 +72,79 @@
 //}
 
 
+
+
 -(void)viewDidLoad{
     [super viewDidLoad];
     
     
+    NSString * key = @"1234567890123456";
+    //加密
+    NSString * originalText = @"你好啊";
+    
+    /*
+    NSData * textData = [originalText dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData * encryptData = [textData AES128EncryptWithKey:key];
+    
+    NSString * encryptString = [[NSString alloc]initWithData:encryptData encoding:NSUTF8StringEncoding];
+    
+    NSData * base64Data = [NSData dataWithBase64EncodedString:encryptString];
+    
+    
+    NSString * encryptyString = [[NSString alloc]initWithData:base64Data encoding:NSUTF8StringEncoding];
+    
+      DLog(@"encryptyString = %@",encryptyString);
+    */
+    
+    NSString * text = @"eQKo0dcHPUqGd7+x635iuIOrUZmpiXXexpx+h+D5FCc=";
+    
+
+    NSString * decryptString = [AES sl_DecryptString:text key:key];
+    DLog(@"==========解密%@=========",decryptString);
+    
+    
+//    NSString *  encryptString = [AES sl_EncryptString:originalText key:key];
+//      DLog(@"==========加密%@=========",encryptString);
+    
+    
+    //使用YYData加密
+    
+//    NSData * YYData = [textData aes256EncryptWithKey:keyData iv:nil];
+//    NSString * YYDataString = [[NSString alloc]initWithData:YYData encoding:NSUTF8StringEncoding];
+//    DLog(@"YYDataString = %@",YYDataString);
+
+    
+    
+    //使用自写方法加密
+//    NSData * data = [self encryptText:text];
+//    NSString * dataString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+//    DLog(@"dataString = %@",dataString);
+
+    //使用AES加密
+//    NSString * encryptString = [AESCrypt encrypt:text password:key];
+//    DLog(@"===encryptString=== = %@",encryptString);
+
+    
+//    NSString * encryptedString = @"baNrf+TJmfx2d/yRvKVPAA==";
+//    NSString * decryptString = [AESCrypt decrypt:encryptedString password:key];
+//    DLog(@"===decryptString=== = %@",decryptString);
+
+    
+    
+//    NSString * encryptString = [AESCrypt encrypt:text password:key];
+    
+    
+//       NSString * encryptString = @"STuiTpD09wRHTP5lQNcWkg==";
+//    NSData * data = [encryptString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSString * de = [AESCrypt decrypt:encryptString password:key];
+//    DLog(@"cryptString = %@",cryptString);
+
+//    DLog(@"decryptString = %@",de);
+    
 }
+
+
 
 
 -(const char *)UnicodeToISO88591:(NSString *)src

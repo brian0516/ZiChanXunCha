@@ -14,12 +14,16 @@
 static NSString * const KLogoName   = @"xc_logo";
 static NSString * const KNextButtonTitle = @"下一步";
 static NSString * const KNextBtnBgColor    = @"0177DC";
-static NSString * const KAgreeBtnImageNormal = @"0177dc";
-static NSString * const KAgreeBtnImageSelected = @"";
+static NSString * const KAgreeBtnImageNormal = @"xc_disagree_normal";
+static NSString * const KAgreeBtnImageSelected = @"xc_agree_selected";
 static NSString * const KGetIdentifyBtnBgColor = @"8ac8ff";
 static NSString * const KGetIdentifyBtnTitle = @"获取验证码";
 static NSString * const KGetIdentifyBtnAgainTitle = @"重新获取";
 static CGFloat    const KGetIdentifyBtnFontSize = 12.0f;
+
+
+
+
 
 #ifdef DEBUG
 static CGFloat    const  KGetIdentifyDuration = 10.0f;
@@ -53,7 +57,7 @@ static CGFloat const KGetIdentifyBtnWidth = 95.0f;
 @property (nonatomic,strong)SLLoginTextField * enterPhoneNumberTF;
 @property (nonatomic,strong)SLLoginTextField * identifyCodeTF;//验证码
 @property (nonatomic,strong)UIButton * nextButton;
-@property (nonatomic,strong)UIButton * agreeBtn;
+@property (nonatomic,strong)UIImageView * agreeBtn;
 @property (nonatomic,strong)UIButton * getIdentifyCodeBtn; // 获取验证码
 
 @end
@@ -135,10 +139,8 @@ static CGFloat const KGetIdentifyBtnWidth = 95.0f;
     
     //条款按钮
     [self.agreeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(weakSelf.view);
-        make.height.equalTo(@(KBtnAndTextFieldHeight));
         make.top.equalTo(weakSelf.nextButton.mas_bottom).offset(KAgreeBtnTopOffSet);
-        make.left.equalTo(@(0));
+        make.centerX.mas_equalTo(weakSelf.view.mas_centerX);
     }];
 }
 
@@ -173,6 +175,14 @@ static CGFloat const KGetIdentifyBtnWidth = 95.0f;
         
     }];
 
+}
+
+
+//阅读同意条款
+-(void)agreeBtn:(id)sender{
+
+    DLog(@"=====read======");
+    
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -224,12 +234,15 @@ static CGFloat const KGetIdentifyBtnWidth = 95.0f;
 }
 
 //agreeButton
--(UIButton *)agreeBtn{
+-(UIImageView *)agreeBtn{
     if(!_agreeBtn){
-        _agreeBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        _agreeBtn.backgroundColor = [UIColor redColor];
-        [_agreeBtn setBackgroundImage:[UIImage imageNamed:KAgreeBtnImageNormal] forState:UIControlStateNormal];
-        [_agreeBtn setBackgroundImage:[UIImage imageNamed:KAgreeBtnImageSelected] forState:UIControlStateSelected];
+        _agreeBtn = [[UIImageView alloc]init];
+        [_agreeBtn setImage:[UIImage imageNamed:KAgreeBtnImageNormal]];
+        [_agreeBtn setHighlightedImage:[UIImage imageNamed:KAgreeBtnImageSelected]];
+        [_agreeBtn setHighlighted:YES];
+        UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(agreeBtn:)];
+        [_agreeBtn addGestureRecognizer:tap];
+        _agreeBtn.userInteractionEnabled = YES;
         [self.view addSubview:_agreeBtn];
     }
     return _agreeBtn;
