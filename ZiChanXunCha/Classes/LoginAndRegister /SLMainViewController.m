@@ -12,6 +12,12 @@
 #import "SLLoginTextField.h"
 #import "SLRegisterViewController.h"
 
+//-------------以下为测试------
+#import "SLFillOutPersonalInfomationViewController.h"
+
+
+
+//---------------测试结束---------
 // MARK: 静态字符串
 static NSString * const KBgColor    = @"006cba"; //背景颜色
 static NSString * const KLogoName   = @"xc_logo";
@@ -190,6 +196,10 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
 
 //    AppDelegate * delegate = [UIApplication sharedApplication].delegate;
 //    [delegate configRootViewController:@"SLMainTabBarController"];
+    
+    
+    
+    
 }
 
 #pragma -mark ------------ actions-----------
@@ -197,6 +207,12 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
 // TODO 登录
 -(void)login{
 
+    SLFillOutPersonalInfomationViewController * fillOut = [[SLFillOutPersonalInfomationViewController alloc]init];
+    [self.navigationController pushViewController:fillOut animated:YES];
+    
+    
+    
+    
 }
 
 
@@ -283,6 +299,7 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginBtn setBackgroundColor:[UIColor colorWithHexString:KLoginBtnBgColor] ForState:UIControlStateNormal];
         _loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+        [_loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_loginBtn];
     }
     return _loginBtn;

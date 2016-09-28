@@ -1,78 +1,48 @@
 //
-//  SLTableViewController.m
+//  SLBaseTableView.m
 //  ZiChanXunCha
 //
-//  Created by shuanglong on 16/9/18.
+//  Created by shuanglong on 16/9/28.
 //  Copyright © 2016年 shuanglong. All rights reserved.
 //
 
-#import "SLTableViewController.h"
+#import "SLBaseTableView.h"
 
-#define MJRandomData [NSString stringWithFormat:@"随机数据---%d", arc4random_uniform(1000000)]
+@interface SLBaseTableView ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>;
 
-@interface SLTableViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (nonatomic,strong)UITableView * tableView;
+@property (strong, nonatomic) NSMutableArray *data;
 
 @end
 
-@implementation SLTableViewController
+@implementation SLBaseTableView
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor redColor];
-    
-    
-    [self tableView];
-    
-    self.tableView.backgroundColor = [UIColor greenColor];
-    
-}
 
-//设置头部刷新
--(void)setHeaderRefreshAvailable:(BOOL)headerRefreshAvailable{
-    DefineWeakSelf;
-    _headerRefreshAvailable = headerRefreshAvailable;
-    
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+-(instancetype)init{
+    self = [super init];
+    if (self) {
         
-        if (weakSelf.headerRefresh) {
-            weakSelf.headerRefresh();
-        }
-        
-    }];
-    
-}
-
-
-//设置底部刷新
--(void)setFooterRefreshAvailable:(BOOL)footerRefreshAvailable{
-    DefineWeakSelf;
-    
-    _footerRefreshAvailable = footerRefreshAvailable;
-    
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        if (weakSelf.footerRefresh) {
-            weakSelf.footerRefresh();
-        }
-    }];
-    
-}
-
-
-
-
--(UITableView *)tableView{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]init];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.frame = CGRectMake(0, 0, kScreenWidth, kScreenHeight-100);
-        [self.view addSubview:_tableView];
-        _tableView.tableFooterView = [UIView new];
+        self.backgroundColor = [UIColor redColor];
     }
-    return _tableView;
+    return self;
 }
 
+
+-(void)layoutSubviews{
+    [super layoutSubviews];
+
+    DefineWeakSelf;
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(weakSelf);
+        make.right.mas_equalTo(weakSelf);
+        make.height.mas_equalTo(weakSelf);
+        make.top.mas_equalTo(0);
+    }];
+}
+
+
+#pragma -mark --------tableViewDelegate-----
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -100,10 +70,14 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         }
-        
+        cell.textLabel.text = @"123";
         return cell;
     }
 }
+
+
+
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -111,6 +85,12 @@
         self.cellDidSelected(indexPath);
     }
 }
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+}
+
 
 - (NSMutableArray *)data
 {
@@ -122,5 +102,20 @@
     }
     return _data;
 }
+
+
+#pragma -mark   ---------lazyLoad---------
+
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]init];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        [self addSubview:_tableView];
+        _tableView.tableFooterView = [UIView new];
+    }
+    return _tableView;
+}
+
 
 @end

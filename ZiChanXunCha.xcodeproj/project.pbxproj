@@ -31,6 +31,13 @@
 		0109DAFC1D86524400AE7F2C /* HcdVideoRequestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 0109DAF21D86524400AE7F2C /* HcdVideoRequestTask.m */; };
 		0109DAFD1D86524400AE7F2C /* NSString+HCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0109DAF41D86524400AE7F2C /* NSString+HCD.m */; };
 		010EBE431D8923E600DD69DD /* RegisterFeedBack.json in Resources */ = {isa = PBXBuildFile; fileRef = 010EBE421D8923E600DD69DD /* RegisterFeedBack.json */; };
+		012821B61D9B4785001FD937 /* SLQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012821B51D9B4785001FD937 /* SLQuestionView.m */; };
+		012821B91D9B6DB6001FD937 /* SLFillOutPersonalInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 012821B81D9B6DB6001FD937 /* SLFillOutPersonalInfomationViewController.m */; };
+		012821BC1D9B78B9001FD937 /* SLBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012821BB1D9B78B9001FD937 /* SLBaseTableView.m */; };
+		0156E09E1D9BA16B0038FD35 /* SegmentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0156E09D1D9BA16B0038FD35 /* SegmentController.xib */; };
+		0156E0A21D9BC96D0038FD35 /* SLFillOutInfomationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156E0A01D9BC96D0038FD35 /* SLFillOutInfomationCell.m */; };
+		0156E0A31D9BC96D0038FD35 /* SLFillOutInfomationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0156E0A11D9BC96D0038FD35 /* SLFillOutInfomationCell.xib */; };
+		0156E0A51D9BCD530038FD35 /* SLAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0156E0A41D9BCD530038FD35 /* SLAccessoryView.xib */; };
 		016723EB1D88E9FF009C24BA /* NSString+SLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 016723EA1D88E9FF009C24BA /* NSString+SLString.m */; };
 		016723EF1D891C67009C24BA /* XHToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 016723EE1D891C67009C24BA /* XHToast.m */; };
 		01777E0A1D82452E001C9BA3 /* SLMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01777E091D82452E001C9BA3 /* SLMainViewController.m */; };
@@ -267,6 +274,17 @@
 		0109DAF31D86524400AE7F2C /* NSString+HCD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HCD.h"; sourceTree = "<group>"; };
 		0109DAF41D86524400AE7F2C /* NSString+HCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HCD.m"; sourceTree = "<group>"; };
 		010EBE421D8923E600DD69DD /* RegisterFeedBack.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RegisterFeedBack.json; sourceTree = "<group>"; };
+		012821B41D9B4785001FD937 /* SLQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLQuestionView.h; sourceTree = "<group>"; };
+		012821B51D9B4785001FD937 /* SLQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLQuestionView.m; sourceTree = "<group>"; };
+		012821B71D9B6DB6001FD937 /* SLFillOutPersonalInfomationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFillOutPersonalInfomationViewController.h; sourceTree = "<group>"; };
+		012821B81D9B6DB6001FD937 /* SLFillOutPersonalInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFillOutPersonalInfomationViewController.m; sourceTree = "<group>"; };
+		012821BA1D9B78B9001FD937 /* SLBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLBaseTableView.h; sourceTree = "<group>"; };
+		012821BB1D9B78B9001FD937 /* SLBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLBaseTableView.m; sourceTree = "<group>"; };
+		0156E09D1D9BA16B0038FD35 /* SegmentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentController.xib; sourceTree = "<group>"; };
+		0156E09F1D9BC96D0038FD35 /* SLFillOutInfomationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFillOutInfomationCell.h; sourceTree = "<group>"; };
+		0156E0A01D9BC96D0038FD35 /* SLFillOutInfomationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFillOutInfomationCell.m; sourceTree = "<group>"; };
+		0156E0A11D9BC96D0038FD35 /* SLFillOutInfomationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLFillOutInfomationCell.xib; sourceTree = "<group>"; };
+		0156E0A41D9BCD530038FD35 /* SLAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLAccessoryView.xib; sourceTree = "<group>"; };
 		016723E91D88E9FF009C24BA /* NSString+SLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SLString.h"; sourceTree = "<group>"; };
 		016723EA1D88E9FF009C24BA /* NSString+SLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SLString.m"; sourceTree = "<group>"; };
 		016723ED1D891C67009C24BA /* XHToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHToast.h; sourceTree = "<group>"; };
@@ -644,6 +662,8 @@
 				01F3D5461D990C430094774E /* SLSetPasswordForRegisterViewController.m */,
 				01F3D5481D9917320094774E /* SLQuestionsViewController.h */,
 				01F3D5491D9917320094774E /* SLQuestionsViewController.m */,
+				012821B71D9B6DB6001FD937 /* SLFillOutPersonalInfomationViewController.h */,
+				012821B81D9B6DB6001FD937 /* SLFillOutPersonalInfomationViewController.m */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -657,6 +677,11 @@
 				01FB9AA81D96565800271FC0 /* SLLoginTextField.m */,
 				0103684C1D8261C000ABBF32 /* SLVideoPlayer.h */,
 				0103684D1D8261C000ABBF32 /* SLVideoPlayer.m */,
+				012821B41D9B4785001FD937 /* SLQuestionView.h */,
+				012821B51D9B4785001FD937 /* SLQuestionView.m */,
+				0156E09F1D9BC96D0038FD35 /* SLFillOutInfomationCell.h */,
+				0156E0A01D9BC96D0038FD35 /* SLFillOutInfomationCell.m */,
+				0156E0A11D9BC96D0038FD35 /* SLFillOutInfomationCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -728,6 +753,15 @@
 			path = hcdCachePlayer;
 			sourceTree = "<group>";
 		};
+		0156E09C1D9BA1380038FD35 /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				0156E09D1D9BA16B0038FD35 /* SegmentController.xib */,
+				0156E0A41D9BCD530038FD35 /* SLAccessoryView.xib */,
+			);
+			name = xib;
+			sourceTree = "<group>";
+		};
 		016723E61D88DDBA009C24BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -785,6 +819,7 @@
 			children = (
 				0103684B1D82614000ABBF32 /* ViewController */,
 				0103686B1D82651F00ABBF32 /* View */,
+				0156E09C1D9BA1380038FD35 /* xib */,
 				016723E61D88DDBA009C24BA /* Model */,
 			);
 			path = "LoginAndRegister ";
@@ -1351,6 +1386,8 @@
 		01EA4A551D8E36B100051124 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				012821BA1D9B78B9001FD937 /* SLBaseTableView.h */,
+				012821BB1D9B78B9001FD937 /* SLBaseTableView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1556,7 +1593,10 @@
 			files = (
 				0109DAF61D86524400AE7F2C /* hcdCachePlayer.bundle in Resources */,
 				01ABD19A1D9530B00036CCCA /* logo@2x.png in Resources */,
+				0156E0A51D9BCD530038FD35 /* SLAccessoryView.xib in Resources */,
 				01DE436F1D7FE1BB006391F0 /* LaunchScreen.storyboard in Resources */,
+				0156E09E1D9BA16B0038FD35 /* SegmentController.xib in Resources */,
+				0156E0A31D9BC96D0038FD35 /* SLFillOutInfomationCell.xib in Resources */,
 				01DE436C1D7FE1BB006391F0 /* Assets.xcassets in Resources */,
 				010EBE431D8923E600DD69DD /* RegisterFeedBack.json in Resources */,
 				01DE44F21D800D3F006391F0 /* LICENSE in Resources */,
@@ -1610,6 +1650,7 @@
 				01DE447C1D7FE454006391F0 /* YYAnimatedImageView.m in Sources */,
 				01EA4A991D8E69E500051124 /* MJRefreshNormalHeader.m in Sources */,
 				01EA4A4D1D8E366200051124 /* SLOrderListViewController.m in Sources */,
+				012821BC1D9B78B9001FD937 /* SLBaseTableView.m in Sources */,
 				01DE449A1D7FE454006391F0 /* YYAsyncLayer.m in Sources */,
 				01EA4A9A1D8E69E500051124 /* MJRefreshStateHeader.m in Sources */,
 				01DE44FA1D800D3F006391F0 /* UIProgressView+AFNetworking.m in Sources */,
@@ -1633,6 +1674,7 @@
 				01DE44921D7FE454006391F0 /* YYTextArchiver.m in Sources */,
 				01DE44EE1D800D3F006391F0 /* AFSecurityPolicy.m in Sources */,
 				01DE44941D7FE454006391F0 /* YYTextParser.m in Sources */,
+				012821B91D9B6DB6001FD937 /* SLFillOutPersonalInfomationViewController.m in Sources */,
 				01DE44551D7FE454006391F0 /* NSArray+YYAdd.m in Sources */,
 				01DE44F11D800D3F006391F0 /* AFURLSessionManager.m in Sources */,
 				01EA4A9D1D8E69E500051124 /* NSBundle+MJRefresh.m in Sources */,
@@ -1668,6 +1710,7 @@
 				0109DAF81D86524400AE7F2C /* HcdLightView.m in Sources */,
 				01DE44701D7FE454006391F0 /* UITableView+YYAdd.m in Sources */,
 				01DE447B1D7FE454006391F0 /* UIImageView+YYWebImage.m in Sources */,
+				012821B61D9B4785001FD937 /* SLQuestionView.m in Sources */,
 				01DE44A11D7FE454006391F0 /* YYThreadSafeArray.m in Sources */,
 				01DE44A41D7FE454006391F0 /* YYTransaction.m in Sources */,
 				01EA4A9C1D8E69E500051124 /* MJRefreshConst.m in Sources */,
@@ -1737,6 +1780,7 @@
 				01DE45031D800DA2006391F0 /* PPNetworkCache.m in Sources */,
 				0109DAFC1D86524400AE7F2C /* HcdVideoRequestTask.m in Sources */,
 				01DE44C51D7FF8E4006391F0 /* SLConst.m in Sources */,
+				0156E0A21D9BC96D0038FD35 /* SLFillOutInfomationCell.m in Sources */,
 				01EA4A921D8E69E500051124 /* MJRefreshAutoGifFooter.m in Sources */,
 				01DE44ED1D800D3F006391F0 /* AFNetworkReachabilityManager.m in Sources */,
 				01DE44641D7FE454006391F0 /* YYCGUtilities.m in Sources */,

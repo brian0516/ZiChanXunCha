@@ -8,24 +8,26 @@
 
 #import "SLQuestionsViewController.h"
 #import "iCarousel.h"
-#import "SLQuestionTableView.h"
+#import "SLQuestionView.h"
+
 
 // MARK: 静态字符串
 static NSString * const KBgImageViewName = @"questionsBg";
 static NSString * const KBgColor = @"0076dd";
-static CGFloat const KLabelTag = 101;
 
 // MARK: 布局
-static CGFloat const KBgImageViewTopOffSet = 80.0f;
+//static CGFloat const KBgImageViewTopOffSet = 80.0f;
 static CGFloat const KBgImageViewMargin = 30.0f;
-static CGFloat const KBgImageViewBottomOffSet = 100.0f;
-
+//static CGFloat const KBgImageViewBottomOffSet = 100.0f;
+static CGFloat const KCommitBtnWidth = 75;
 
 @interface SLQuestionsViewController ()<iCarouselDelegate,iCarouselDataSource>
 
 @property (nonatomic,strong)UIImageView * bgImageView;
 @property (nonatomic,strong)iCarousel * questionView;
 @property (nonatomic,strong)UILabel * pageLabel;
+@property (nonatomic,strong)NSArray * titlesArr;
+@property (nonatomic,strong)UIButton * commitBtn;
 
 @end
 
@@ -41,6 +43,7 @@ static CGFloat const KBgImageViewBottomOffSet = 100.0f;
     self.questionView.layer.cornerRadius = 15;
     self.questionView.layer.masksToBounds = YES;
     self.questionView.center = self.view.center;
+    self.questionView.centerY += 30;
     
     CALayer * layer1 = [self creatLayWithBound:self.questionView.bounds color:[UIColor colorWithHexString:@"80bbee"]];
     CALayer * layer2 = [self creatLayWithBound:layer1.bounds color:[UIColor colorWithHexString:@"66adeb"]];
@@ -68,6 +71,18 @@ static CGFloat const KBgImageViewBottomOffSet = 100.0f;
     [self.view addSubview:_questionView];
     [self.view addSubview:self.pageLabel];
     
+    UILabel * l = [[UILabel alloc]init];
+    l.frame = CGRectMake(0, 30, kScreenWidth, 40);
+    l.text = @"答题申请";
+    l.textAlignment = NSTextAlignmentCenter;
+    l.font = [UIFont systemFontOfSize:17];
+    l.textColor = UIColorHex(ffffff);
+    [self.view addSubview:l];
+    
+    
+    self.commitBtn.frame = CGRectMake(0, 0, KCommitBtnWidth, KCommitBtnWidth);
+    self.commitBtn.centerX = self.questionView.centerX;
+    self.commitBtn.centerY = self.questionView.bottom;
 }
 
 
@@ -91,11 +106,11 @@ static CGFloat const KBgImageViewBottomOffSet = 100.0f;
         make.left.offset(KBgImageViewMargin);
         make.right.offset(-KBgImageViewMargin);
         make.height.mas_equalTo(weakSelf.questionView.mas_width).multipliedBy(1.5);
-        make.center.mas_equalTo(weakSelf.view);
+        make.centerX.mas_equalTo(weakSelf.view);
+        make.centerY.offset(40);
     }];
 
 }
-
 
 #pragma -mark ---------icrouselDelegate-----------
 
@@ -109,55 +124,55 @@ static CGFloat const KBgImageViewBottomOffSet = 100.0f;
 
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSInteger)index reusingView:(nullable UIView *)view{
     
-    if (!view) {
+    SLQuestionView * questionView = (SLQuestionView*)view;
+    
+    if (view == nil) {
         view = [self creatIcarouselView:carousel];
+        questionView = (SLQuestionView*)view;
     }
     
-    
-    UILabel * label = [view viewWithTag:KLabelTag];
-    label.text = [NSString stringWithFormat:@"第%ld题",index+1];
-    
+    questionView.label.text = [NSString stringWithFormat:@"第%ld题",index+1];
+    questionView.titleLabel.text = self.titlesArr[index];
+
     return view;
-
+    
 }
-
 
 
 - (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel{
     NSInteger currentPage = carousel.currentItemIndex+1;
     NSString * pageIndicator = [NSString stringWithFormat:@"%ld / %ld",currentPage,carousel.numberOfItems];
     self.pageLabel.text = pageIndicator;
+    
+    
+    //设置提交按钮的隐藏和显示
+    
+    if (currentPage == carousel.numberOfItems) {
+        self.commitBtn.hidden = NO;
+    }
+    else{
+        self.commitBtn.hidden = YES;
+    }
+    
 }
 
 
 
 //创建carousel视图
--(UIView*)creatIcarouselView:(iCarousel*)carousel{
-    UIView * view = [[UIView alloc]init];
+-(SLQuestionView*)creatIcarouselView:(iCarousel*)carousel{
+    SLQuestionView * view = [[SLQuestionView alloc]init];
     view.frame = carousel.bounds;
-    UIImageView * imageView = [self creatImageView];
-    [view addSubview:imageView];
-    
-    UILabel * label = [self creatLabel];
-    [imageView addSubview:label];
-    
-    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(25);
-        make.centerX.mas_equalTo(view);
-    }];
-    
-    
-    [label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.topMargin.mas_equalTo(imageView);
-        make.bottomMargin.mas_equalTo(imageView);
-        make.leftMargin.mas_equalTo(imageView);
-        make.rightMargin.mas_equalTo(imageView);
-    }];
-    
-    
     return view;
 }
 
+
+
+#pragma -mark --------actions------
+-(void)commit:(id)sender{
+
+    //这里跳转到填写巡查人员信息
+
+}
 
 
 
@@ -190,24 +205,6 @@ static CGFloat const KBgImageViewBottomOffSet = 100.0f;
     return _questionView;
 }
 
-
--(UIImageView *)creatImageView{
-    UIImageView * imageView;
-    imageView = [[UIImageView alloc]init];
-    imageView.image = [UIImage imageNamed:@"xc_tihao"];
-    imageView.frame = CGRectMake(130, 25, 100, 40);
-    return imageView;
-}
-
--(UILabel*)creatLabel{
-    UILabel * label = [[UILabel alloc]init];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.tag = KLabelTag;
-    label.textColor = [UIColor colorWithHexString:KBgColor];
-    return label;
-}
-
-
 -(UILabel*)pageLabel{
     if (!_pageLabel) {
         _pageLabel = [[UILabel alloc]init];
@@ -219,6 +216,33 @@ static CGFloat const KBgImageViewBottomOffSet = 100.0f;
     }
     
     return _pageLabel;
+}
+
+
+-(UIButton *)commitBtn{
+    if (!_commitBtn) {
+        _commitBtn  = [UIButton buttonWithType:UIButtonTypeSystem];
+        _commitBtn.backgroundColor = UIColorHex(f7ab00);
+        [_commitBtn setTitle:@"提交" forState:UIControlStateNormal];
+        [self.view addSubview:_commitBtn];
+        _commitBtn.hidden = YES;
+        _commitBtn.layer.masksToBounds = YES;
+        _commitBtn.layer.cornerRadius = KCommitBtnWidth/2;
+        [_commitBtn setTitleColor:UIColorHex(ffffff) forState:UIControlStateNormal];
+        [_commitBtn addTarget:self action:@selector(commit:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _commitBtn;
+}
+
+
+
+
+
+-(NSArray *)titlesArr{
+    if (!_titlesArr) {
+        _titlesArr = @[@"这是第一题快速机动洛杉矶的离开?",@"这是第二题快速机动洛杉矶的离开据了解受打击陪外婆?",@"这是第三题快速机动洛杉矶的结网ieoiwe离开据了解受打击陪外婆?",@"这是第四题快速机动洛杉矶的结网ieoiwe离开据尽快了解爱上帝问等级哦我了解受打击陪外婆?",@"这是第五题快速机动洛杉矶的结网ieoiwe离开据尽快了解爱上帝问等级哦我了解受打击陪外婆?",@"这是第六题快速机动洛杉矶的结网ieoiwe离开据尽快了解爱上帝问等级哦我了解受打击陪外婆?",@"这是第七题快速机动洛杉矶的结网ieoiwe离开据尽快了解爱上帝问等级哦我了解受打击陪外婆?",@"这是第八题快速机动洛杉矶的结网ieoiwe离开据尽快了解爱上帝问等级哦我了解受打击陪外婆?",@"这是第九题快速机动洛杉矶的结网ieoiwe离开据尽快了解爱上帝问等级哦我了解受打击陪外婆?",@"这是第十题快速机动洛杉矶的结网ieoiwe离开据尽快了解爱上帝问等级哦我了解受打击陪外婆?"];
+    }
+    return _titlesArr;
 }
 
 
