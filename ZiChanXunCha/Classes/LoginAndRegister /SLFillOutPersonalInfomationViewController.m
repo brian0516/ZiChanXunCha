@@ -40,7 +40,6 @@ static CGFloat const KSegmentControllerHeight = 45;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *segIndicatorLeading;
 
-
 @end
 
 @implementation SLFillOutPersonalInfomationViewController
