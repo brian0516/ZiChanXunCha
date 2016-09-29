@@ -8,6 +8,8 @@
 
 #import "RSADemoViewController.h"
 #import "AES.h"
+#import "SLSegmentController.h"
+
 
 @interface RSADemoViewController ()
 
@@ -16,6 +18,23 @@
 @end
 
 @implementation RSADemoViewController
+
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor grayColor];
+    
+    
+    SLSegmentController *seg = [[SLSegmentController alloc]initWithTitles:@[@"通过",@"未通过",@"审核中",@"待定"]];
+    seg.frame = CGRectMake(0, 44, kScreenWidth, 44);
+    [self.view addSubview:seg];
+    
+
+
+}
+
+
+
 
 //- (void)viewDidLoad {
 //    [super viewDidLoad];
@@ -74,14 +93,14 @@
 
 
 
--(void)viewDidLoad{
-    [super viewDidLoad];
-    
-    
-    NSString * key = @"1234567890123456";
-    //加密
-    NSString * originalText = @"你好啊";
-    
+//-(void)viewDidLoad{
+//    [super viewDidLoad];
+//    
+//    
+//    NSString * key = @"1234567890123456";
+//    //加密
+//    NSString * originalText = @"你好啊";
+
     /*
     NSData * textData = [originalText dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -97,11 +116,11 @@
       DLog(@"encryptyString = %@",encryptyString);
     */
     
-    NSString * text = @"eQKo0dcHPUqGd7+x635iuIOrUZmpiXXexpx+h+D5FCc=";
-    
-
-    NSString * decryptString = [AES sl_DecryptString:text key:key];
-    DLog(@"==========解密%@=========",decryptString);
+//    NSString * text = @"eQKo0dcHPUqGd7+x635iuIOrUZmpiXXexpx+h+D5FCc=";
+//    
+//
+//    NSString * decryptString = [AES sl_DecryptString:text key:key];
+//    DLog(@"==========解密%@=========",decryptString);
     
     
 //    NSString *  encryptString = [AES sl_EncryptString:originalText key:key];
@@ -142,7 +161,7 @@
 
 //    DLog(@"decryptString = %@",de);
     
-}
+//}
 
 
 

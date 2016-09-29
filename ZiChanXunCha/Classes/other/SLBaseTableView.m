@@ -28,6 +28,16 @@
 }
 
 
+-(void)setFooterView:(UIView *)footerView{
+    _footerView = footerView;
+    self.tableView.tableFooterView = footerView;
+}
+
+
+-(void)reloadData{
+    [self.tableView reloadData];
+}
+
 -(void)layoutSubviews{
     [super layoutSubviews];
 
@@ -46,21 +56,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.data.count;
+    if (self.numberOfRowBlock) {
+        return self.numberOfRowBlock();
+    }
+    else{
+    return 0 ;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    static NSString *ID = @"cell";
-    //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    //    if (cell == nil) {
-    //        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-    //    }
-    //
-    //    cell.textLabel.text = [NSString stringWithFormat:@"SL%@ - %@", indexPath.row % 2?@"push":@"modal", self.data[indexPath.row]];
-    //
-    //    return cell;
-    
     if (self.cellForRow) {
         return self.cellForRow(tableView,indexPath);
     }
@@ -88,7 +93,13 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    
+    if (self.cellHeightBlock) {
+        return self.cellHeightBlock();
+    }
+    else{
+        return 50;
+    }
 }
 
 

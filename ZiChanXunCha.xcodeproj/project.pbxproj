@@ -34,7 +34,6 @@
 		012821B61D9B4785001FD937 /* SLQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012821B51D9B4785001FD937 /* SLQuestionView.m */; };
 		012821B91D9B6DB6001FD937 /* SLFillOutPersonalInfomationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 012821B81D9B6DB6001FD937 /* SLFillOutPersonalInfomationViewController.m */; };
 		012821BC1D9B78B9001FD937 /* SLBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 012821BB1D9B78B9001FD937 /* SLBaseTableView.m */; };
-		0156E09E1D9BA16B0038FD35 /* SegmentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0156E09D1D9BA16B0038FD35 /* SegmentController.xib */; };
 		0156E0A21D9BC96D0038FD35 /* SLFillOutInfomationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0156E0A01D9BC96D0038FD35 /* SLFillOutInfomationCell.m */; };
 		0156E0A31D9BC96D0038FD35 /* SLFillOutInfomationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0156E0A11D9BC96D0038FD35 /* SLFillOutInfomationCell.xib */; };
 		0156E0A51D9BCD530038FD35 /* SLAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0156E0A41D9BCD530038FD35 /* SLAccessoryView.xib */; };
@@ -45,6 +44,14 @@
 		01C38DB81D9A798200D37B05 /* AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C38DB71D9A798200D37B05 /* AES.m */; };
 		01C38DBC1D9A8D3600D37B05 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C38DBB1D9A8D3600D37B05 /* iCarousel.m */; };
 		01C38DC11D9A97FB00D37B05 /* SLQuestionTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 01C38DC01D9A97FB00D37B05 /* SLQuestionTableView.m */; };
+		01D2752F1D9CB65800462A2F /* SLFillOutInfomationCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D2752D1D9CB65800462A2F /* SLFillOutInfomationCell2.m */; };
+		01D275301D9CB65800462A2F /* SLFillOutInfomationCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D2752E1D9CB65800462A2F /* SLFillOutInfomationCell2.xib */; };
+		01D275341D9CBA3400462A2F /* SLFillOutInfomationCell3.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D275321D9CBA3400462A2F /* SLFillOutInfomationCell3.m */; };
+		01D275351D9CBA3400462A2F /* SLFillOutInfomationCell3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D275331D9CBA3400462A2F /* SLFillOutInfomationCell3.xib */; };
+		01D2753D1D9CE57B00462A2F /* LQXSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D2753C1D9CE57B00462A2F /* LQXSwitch.m */; };
+		01D275421D9D13D900462A2F /* SLOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D275401D9D13D900462A2F /* SLOrderCell.m */; };
+		01D275431D9D13D900462A2F /* SLOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D275411D9D13D900462A2F /* SLOrderCell.xib */; };
+		01D275461D9D21DA00462A2F /* numberOfChooseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01D275451D9D21DA00462A2F /* numberOfChooseView.xib */; };
 		01D43B921D96097B00BBCEB6 /* UIButton+SLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D43B911D96097B00BBCEB6 /* UIButton+SLButton.m */; };
 		01D7B5431D892FA1003D700F /* SLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D7B5421D892FA1003D700F /* SLHelper.m */; };
 		01D7B5461D894538003D700F /* SLLoginAndRegisterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 01D7B5451D894538003D700F /* SLLoginAndRegisterRequest.m */; };
@@ -200,6 +207,7 @@
 		01EA4A9F1D8E69E500051124 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EA4A8A1D8E69E500051124 /* UIScrollView+MJRefresh.m */; };
 		01EA4AA01D8E69E500051124 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EA4A8C1D8E69E500051124 /* UIView+MJExtension.m */; };
 		01EA4AA31D8E770E00051124 /* SLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EA4AA21D8E770E00051124 /* SLTableViewController.m */; };
+		01EE7A1B1D9C9BC2002BB339 /* SLSegmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EE7A1A1D9C9BC2002BB339 /* SLSegmentController.m */; };
 		01F3D5441D9905660094774E /* RSADemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F3D5431D9905660094774E /* RSADemoViewController.m */; };
 		01F3D5471D990C430094774E /* SLSetPasswordForRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F3D5461D990C430094774E /* SLSetPasswordForRegisterViewController.m */; };
 		01F3D54A1D9917320094774E /* SLQuestionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01F3D5491D9917320094774E /* SLQuestionsViewController.m */; };
@@ -280,7 +288,6 @@
 		012821B81D9B6DB6001FD937 /* SLFillOutPersonalInfomationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFillOutPersonalInfomationViewController.m; sourceTree = "<group>"; };
 		012821BA1D9B78B9001FD937 /* SLBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLBaseTableView.h; sourceTree = "<group>"; };
 		012821BB1D9B78B9001FD937 /* SLBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLBaseTableView.m; sourceTree = "<group>"; };
-		0156E09D1D9BA16B0038FD35 /* SegmentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SegmentController.xib; sourceTree = "<group>"; };
 		0156E09F1D9BC96D0038FD35 /* SLFillOutInfomationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFillOutInfomationCell.h; sourceTree = "<group>"; };
 		0156E0A01D9BC96D0038FD35 /* SLFillOutInfomationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFillOutInfomationCell.m; sourceTree = "<group>"; };
 		0156E0A11D9BC96D0038FD35 /* SLFillOutInfomationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLFillOutInfomationCell.xib; sourceTree = "<group>"; };
@@ -298,6 +305,18 @@
 		01C38DBB1D9A8D3600D37B05 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
 		01C38DBF1D9A97FB00D37B05 /* SLQuestionTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLQuestionTableView.h; sourceTree = "<group>"; };
 		01C38DC01D9A97FB00D37B05 /* SLQuestionTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLQuestionTableView.m; sourceTree = "<group>"; };
+		01D2752C1D9CB65800462A2F /* SLFillOutInfomationCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFillOutInfomationCell2.h; sourceTree = "<group>"; };
+		01D2752D1D9CB65800462A2F /* SLFillOutInfomationCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFillOutInfomationCell2.m; sourceTree = "<group>"; };
+		01D2752E1D9CB65800462A2F /* SLFillOutInfomationCell2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLFillOutInfomationCell2.xib; sourceTree = "<group>"; };
+		01D275311D9CBA3400462A2F /* SLFillOutInfomationCell3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLFillOutInfomationCell3.h; sourceTree = "<group>"; };
+		01D275321D9CBA3400462A2F /* SLFillOutInfomationCell3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLFillOutInfomationCell3.m; sourceTree = "<group>"; };
+		01D275331D9CBA3400462A2F /* SLFillOutInfomationCell3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLFillOutInfomationCell3.xib; sourceTree = "<group>"; };
+		01D2753B1D9CE57B00462A2F /* LQXSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQXSwitch.h; sourceTree = "<group>"; };
+		01D2753C1D9CE57B00462A2F /* LQXSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQXSwitch.m; sourceTree = "<group>"; };
+		01D2753F1D9D13D900462A2F /* SLOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLOrderCell.h; sourceTree = "<group>"; };
+		01D275401D9D13D900462A2F /* SLOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLOrderCell.m; sourceTree = "<group>"; };
+		01D275411D9D13D900462A2F /* SLOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SLOrderCell.xib; sourceTree = "<group>"; };
+		01D275451D9D21DA00462A2F /* numberOfChooseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = numberOfChooseView.xib; sourceTree = "<group>"; };
 		01D43B901D96097B00BBCEB6 /* UIButton+SLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SLButton.h"; sourceTree = "<group>"; };
 		01D43B911D96097B00BBCEB6 /* UIButton+SLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SLButton.m"; sourceTree = "<group>"; };
 		01D7B5411D892FA1003D700F /* SLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLHelper.h; sourceTree = "<group>"; };
@@ -599,6 +618,8 @@
 		01EA4A8C1D8E69E500051124 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		01EA4AA11D8E770E00051124 /* SLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLTableViewController.h; sourceTree = "<group>"; };
 		01EA4AA21D8E770E00051124 /* SLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLTableViewController.m; sourceTree = "<group>"; };
+		01EE7A191D9C9BC2002BB339 /* SLSegmentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLSegmentController.h; path = ../../ViewControllers/SLSegmentController.h; sourceTree = "<group>"; };
+		01EE7A1A1D9C9BC2002BB339 /* SLSegmentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLSegmentController.m; path = ../../ViewControllers/SLSegmentController.m; sourceTree = "<group>"; };
 		01F3D5421D9905660094774E /* RSADemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSADemoViewController.h; sourceTree = "<group>"; };
 		01F3D5431D9905660094774E /* RSADemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSADemoViewController.m; sourceTree = "<group>"; };
 		01F3D5451D990C430094774E /* SLSetPasswordForRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSetPasswordForRegisterViewController.h; sourceTree = "<group>"; };
@@ -679,9 +700,7 @@
 				0103684D1D8261C000ABBF32 /* SLVideoPlayer.m */,
 				012821B41D9B4785001FD937 /* SLQuestionView.h */,
 				012821B51D9B4785001FD937 /* SLQuestionView.m */,
-				0156E09F1D9BC96D0038FD35 /* SLFillOutInfomationCell.h */,
-				0156E0A01D9BC96D0038FD35 /* SLFillOutInfomationCell.m */,
-				0156E0A11D9BC96D0038FD35 /* SLFillOutInfomationCell.xib */,
+				01D2752B1D9CB20E00462A2F /* Cells */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -756,7 +775,6 @@
 		0156E09C1D9BA1380038FD35 /* xib */ = {
 			isa = PBXGroup;
 			children = (
-				0156E09D1D9BA16B0038FD35 /* SegmentController.xib */,
 				0156E0A41D9BCD530038FD35 /* SLAccessoryView.xib */,
 			);
 			name = xib;
@@ -846,8 +864,9 @@
 		01777E061D824021001C9BA3 /* Order */ = {
 			isa = PBXGroup;
 			children = (
-				01EA4A481D8E362300051124 /* SLOrderViewController.h */,
-				01EA4A491D8E362300051124 /* SLOrderViewController.m */,
+				01D2753E1D9D13B800462A2F /* ViewControllers */,
+				01D275441D9D13E300462A2F /* Views */,
+				01D275471D9D21DE00462A2F /* xib */,
 			);
 			path = Order;
 			sourceTree = "<group>";
@@ -886,6 +905,58 @@
 				01EA4A551D8E36B100051124 /* view */,
 			);
 			path = other;
+			sourceTree = "<group>";
+		};
+		01D2752B1D9CB20E00462A2F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0156E09F1D9BC96D0038FD35 /* SLFillOutInfomationCell.h */,
+				0156E0A01D9BC96D0038FD35 /* SLFillOutInfomationCell.m */,
+				0156E0A11D9BC96D0038FD35 /* SLFillOutInfomationCell.xib */,
+				01D2752C1D9CB65800462A2F /* SLFillOutInfomationCell2.h */,
+				01D2752D1D9CB65800462A2F /* SLFillOutInfomationCell2.m */,
+				01D2752E1D9CB65800462A2F /* SLFillOutInfomationCell2.xib */,
+				01D275311D9CBA3400462A2F /* SLFillOutInfomationCell3.h */,
+				01D275321D9CBA3400462A2F /* SLFillOutInfomationCell3.m */,
+				01D275331D9CBA3400462A2F /* SLFillOutInfomationCell3.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		01D2753A1D9CE57B00462A2F /* LQXSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				01D2753B1D9CE57B00462A2F /* LQXSwitch.h */,
+				01D2753C1D9CE57B00462A2F /* LQXSwitch.m */,
+			);
+			path = LQXSwitch;
+			sourceTree = "<group>";
+		};
+		01D2753E1D9D13B800462A2F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				01EA4A481D8E362300051124 /* SLOrderViewController.h */,
+				01EA4A491D8E362300051124 /* SLOrderViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		01D275441D9D13E300462A2F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				01D2753F1D9D13D900462A2F /* SLOrderCell.h */,
+				01D275401D9D13D900462A2F /* SLOrderCell.m */,
+				01D275411D9D13D900462A2F /* SLOrderCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		01D275471D9D21DE00462A2F /* xib */ = {
+			isa = PBXGroup;
+			children = (
+				01D275451D9D21DA00462A2F /* numberOfChooseView.xib */,
+			);
+			name = xib;
 			sourceTree = "<group>";
 		};
 		01DE43531D7FE1BB006391F0 = {
@@ -987,6 +1058,7 @@
 		01DE43A11D7FE3D3006391F0 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				01D2753A1D9CE57B00462A2F /* LQXSwitch */,
 				01C38DB91D9A8D3600D37B05 /* iCarousel */,
 				01C38DB51D9A798200D37B05 /* AES */,
 				01EA4A5E1D8E69E500051124 /* MJRefresh */,
@@ -1386,6 +1458,8 @@
 		01EA4A551D8E36B100051124 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				01EE7A191D9C9BC2002BB339 /* SLSegmentController.h */,
+				01EE7A1A1D9C9BC2002BB339 /* SLSegmentController.m */,
 				012821BA1D9B78B9001FD937 /* SLBaseTableView.h */,
 				012821BB1D9B78B9001FD937 /* SLBaseTableView.m */,
 			);
@@ -1592,15 +1666,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				0109DAF61D86524400AE7F2C /* hcdCachePlayer.bundle in Resources */,
+				01D275301D9CB65800462A2F /* SLFillOutInfomationCell2.xib in Resources */,
 				01ABD19A1D9530B00036CCCA /* logo@2x.png in Resources */,
+				01D275461D9D21DA00462A2F /* numberOfChooseView.xib in Resources */,
 				0156E0A51D9BCD530038FD35 /* SLAccessoryView.xib in Resources */,
 				01DE436F1D7FE1BB006391F0 /* LaunchScreen.storyboard in Resources */,
-				0156E09E1D9BA16B0038FD35 /* SegmentController.xib in Resources */,
 				0156E0A31D9BC96D0038FD35 /* SLFillOutInfomationCell.xib in Resources */,
 				01DE436C1D7FE1BB006391F0 /* Assets.xcassets in Resources */,
 				010EBE431D8923E600DD69DD /* RegisterFeedBack.json in Resources */,
 				01DE44F21D800D3F006391F0 /* LICENSE in Resources */,
 				01DE436A1D7FE1BB006391F0 /* Main.storyboard in Resources */,
+				01D275431D9D13D900462A2F /* SLOrderCell.xib in Resources */,
+				01D275351D9CBA3400462A2F /* SLFillOutInfomationCell3.xib in Resources */,
 				0103692C1D82891F00ABBF32 /* playBtn@2x.png in Resources */,
 				01EA4A9B1D8E69E500051124 /* MJRefresh.bundle in Resources */,
 				010368B21D826EE300ABBF32 /* Info.plist in Resources */,
@@ -1641,7 +1718,9 @@
 				01EA4A8F1D8E69E500051124 /* MJRefreshComponent.m in Sources */,
 				01DE44771D7FE454006391F0 /* _YYWebImageSetter.m in Sources */,
 				01DE44621D7FE454006391F0 /* NSTimer+YYAdd.m in Sources */,
+				01D2752F1D9CB65800462A2F /* SLFillOutInfomationCell2.m in Sources */,
 				010368BA1D826EE300ABBF32 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				01D2753D1D9CE57B00462A2F /* LQXSwitch.m in Sources */,
 				01DE44781D7FE454006391F0 /* CALayer+YYWebImage.m in Sources */,
 				0109DAF91D86524400AE7F2C /* HcdLoaderURLConnection.m in Sources */,
 				01DE44A51D7FE454006391F0 /* YYWeakProxy.m in Sources */,
@@ -1705,6 +1784,7 @@
 				01FB9AAC1D9675B500271FC0 /* SLRegisterViewController.m in Sources */,
 				01DE448E1D7FE454006391F0 /* YYTextSelectionView.m in Sources */,
 				01DE44981D7FE454006391F0 /* YYLabel.m in Sources */,
+				01D275341D9CBA3400462A2F /* SLFillOutInfomationCell3.m in Sources */,
 				01DE44821D7FE454006391F0 /* YYWebImageManager.m in Sources */,
 				01EA4A981D8E69E500051124 /* MJRefreshGifHeader.m in Sources */,
 				0109DAF81D86524400AE7F2C /* HcdLightView.m in Sources */,
@@ -1720,6 +1800,7 @@
 				01DE44611D7FE454006391F0 /* NSThread+YYAdd.m in Sources */,
 				01F3D54A1D9917320094774E /* SLQuestionsViewController.m in Sources */,
 				01EA4A941D8E69E500051124 /* MJRefreshAutoStateFooter.m in Sources */,
+				01EE7A1B1D9C9BC2002BB339 /* SLSegmentController.m in Sources */,
 				01EA4A961D8E69E500051124 /* MJRefreshBackNormalFooter.m in Sources */,
 				01DE449D1D7FE454006391F0 /* YYGestureRecognizer.m in Sources */,
 				01DE445C1D7FE454006391F0 /* NSNumber+YYAdd.m in Sources */,
@@ -1749,6 +1830,7 @@
 				01DE44861D7FE454006391F0 /* YYTextContainerView.m in Sources */,
 				01DE44A01D7FE454006391F0 /* YYSentinel.m in Sources */,
 				01DC2D951D950D7300681CEE /* SLPlayVideoController.m in Sources */,
+				01D275421D9D13D900462A2F /* SLOrderCell.m in Sources */,
 				01DE44841D7FE454006391F0 /* NSObject+YYModel.m in Sources */,
 				01DE44F01D800D3F006391F0 /* AFURLResponseSerialization.m in Sources */,
 				01DE44601D7FE454006391F0 /* NSString+YYAdd.m in Sources */,

@@ -9,8 +9,7 @@
 #import "SLFillOutInfomationCell.h"
 
 @interface SLFillOutInfomationCell ()
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UITextField *textField;
+
 
 @end
 
@@ -20,15 +19,8 @@
     [super awakeFromNib];
 
     self.titleLabel.textColor = UIColorHex(757a8a);
-    
-    DLog(@"======");
-    
-}
+    self.textField.textAlignment = NSTextAlignmentRight;
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 @end
