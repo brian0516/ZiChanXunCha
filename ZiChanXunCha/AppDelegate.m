@@ -26,7 +26,7 @@
     // TODO 这里判断是否登录
     //    NSString * viewContorllerName = @"ViewController";
 //        NSString * viewContorllerName = @"SLMainViewController";
-    //     NSString * viewContorllerName = @"RSADemoViewController";
+//         NSString * viewContorllerName = @"RSADemoViewController";
     NSString * viewContorllerName = @"SLMainTabBarController";
     return [self configRootViewController: viewContorllerName];
     

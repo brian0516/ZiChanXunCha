@@ -24,7 +24,7 @@ typedef NSInteger(^NSIntegerBlock)();
 /**
  *  刷新的block
  */
-//typedef void(^refreshBlock)();
+typedef void(^refreshBlock)();
 
 
 
@@ -37,11 +37,19 @@ typedef UITableViewCell*(^cellForRowBlock)(UITableView * tableView,NSIndexPath *
 
 @interface SLBaseTableView : UIView
 
+@property (nonatomic,strong)UITableView * tableView;
+
+@property (nonatomic,strong)NSMutableArray * dataArr;
+
+@property (nonatomic)BOOL headerRefreshAvailable;
+
+@property (nonatomic)BOOL footerRefreshAvailable;
+
 @property (nonatomic,copy) cellDidSelectedBlock(cellDidSelected);
 
-//@property (nonatomic,copy) refreshBlock(headerRefresh);
-//
-//@property (nonatomic,copy) refreshBlock(footerRefresh);
+@property (nonatomic,copy) refreshBlock(headerRefresh);
+
+@property (nonatomic,copy) refreshBlock(footerRefresh);
 
 @property (nonatomic,copy) cellForRowBlock(cellForRow);
 

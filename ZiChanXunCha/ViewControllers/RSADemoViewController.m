@@ -23,11 +23,56 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor grayColor];
+
+    //根据label反算view
+    
+    UIView * view = [[UIView alloc]init];
+    view.backgroundColor = [UIColor redColor];
+    [self.view addSubview:view];
+    
+    UILabel * label = [[UILabel alloc]init];
+    label.backgroundColor = [UIColor greenColor];
+    label.numberOfLines = 0;
+    label.text = @"首先，玉米籽粒收获对于破解玉米作物机械化生产难题和打通玉米生产全程机械化“最后一公里”意义重大。近年来，在农机购置补贴政策的强力拉动以及各地政府和行业同仁们的共同努力下，我国玉米作物的机械化生产水平持续连年高速发展，截止到2015年末，全国玉米收获机械化率已经接近63%，可以说成绩斐然。然而，相对于95%以上的小麦机收率和接近80%的水稻机收率，玉米的机械化作业水平在三大粮食作物中仍是短板,不仅表现在机械化率这个量化指标上，更大的问题是当前以摘穗剥皮为主流的机械化收获方式还存在着很大的局限性和不经济性。道理非常浅显，从田间收获的玉米棒子既不适宜大规模安全存储，又不能直接进行烘干后归仓储存，要实现谷物颗粒归仓，还需要追加粉碎脱粒、排杂筛选等大量的后续作业。而推广籽粒收获模式刚好弥补了玉米摘穗收获的短板和不足，对于打通玉米全程机械化生产的“最后一公里”意义重大。";
+    [view addSubview:label];
+    
+    UIView * view2 = [[UIView alloc]init];
+    view2.backgroundColor = [UIColor purpleColor];
+    [view addSubview:view2];
+    
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(view).offset(10);
+        make.left.equalTo(view);
+        make.width.equalTo(view);
+    }];
     
     
-    SLSegmentController *seg = [[SLSegmentController alloc]initWithTitles:@[@"通过",@"未通过",@"审核中",@"待定"]];
-    seg.frame = CGRectMake(0, 44, kScreenWidth, 44);
-    [self.view addSubview:seg];
+    [view2 mas_makeConstraints:^(MASConstraintMaker *make) {
+       
+        make.top.equalTo(label.mas_bottom).offset(10);
+        make.left.equalTo(view);
+        make.width.equalTo(view);
+        make.height.equalTo(@(100));
+
+    }];
+    
+    
+    [view mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.offset(100);
+        make.left.equalTo(@(0));
+        make.right.equalTo(@(0));
+        make.bottom.equalTo(view2.mas_bottom).offset(10);
+        
+        
+    }];
+    
+    
+    
+    
+    
+    
+    
     
 
 

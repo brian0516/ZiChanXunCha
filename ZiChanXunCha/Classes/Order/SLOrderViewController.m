@@ -12,6 +12,10 @@
 #import "iCarousel.h"
 #import "SLBaseTableView.h"
 #import "SLOrderCell.h"
+#import "CALayer+SLLayer.h"
+#import "testModel.h"
+#import "SLNumberOfChooseView.h"
+#import "SLDetailOfOrderViewController.h"
 
 // MARK: 布局
 static CGFloat const KSegmentControllerHeight = 45;
@@ -24,7 +28,9 @@ static CGFloat const KSegmentControllerHeight = 45;
 
 @property(nonatomic,strong)iCarousel * carousel;
 
-@property (nonatomic,strong)NSMutableArray * data;
+@property (nonatomic,strong)SLNumberOfChooseView * numberOfChooseView;
+
+@property (nonatomic,strong)SLNumberOfChooseView * numberOfChooseView2;
 
 
 @end
@@ -34,6 +40,7 @@ static CGFloat const KSegmentControllerHeight = 45;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.edgesForExtendedLayout = UIRectEdgeNone;
     [self _layoutSubViews];
 }
@@ -57,6 +64,25 @@ static CGFloat const KSegmentControllerHeight = 45;
         make.bottom.equalTo(weakSelf.view);
     }];
     
+    
+    [self.numberOfChooseView2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@(50));
+        make.left.equalTo(weakSelf.view);
+        make.width.equalTo(weakSelf.view);
+        make.bottom.equalTo(weakSelf.view);
+    }];
+    
+    [self.numberOfChooseView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(@(50));
+        make.left.equalTo(weakSelf.view);
+        make.width.equalTo(weakSelf.view);
+        make.bottom.equalTo(weakSelf.view);
+    }];
+    
+    
+    
+    
+    
 }
 
 //MARK:为carousel创建tableView
@@ -64,10 +90,14 @@ static CGFloat const KSegmentControllerHeight = 45;
     UIView * view = [UIView new];
     view.frame = self.carousel.bounds;
     SLBaseTableView * tableView = [[SLBaseTableView alloc]init];
+    tableView.tag = 100;
     tableView.frame = CGRectMake(10,10, view.width-20,view.height-20);
     tableView.layer.borderColor = UIColorHex(cccccc).CGColor;
     tableView.layer.borderWidth = 0.5;
     [view addSubview:tableView];
+    tableView.headerRefreshAvailable = YES;
+    tableView.footerRefreshAvailable = YES;
+    
     [self configTableView:tableView];
     
     return view;
@@ -78,6 +108,8 @@ static CGFloat const KSegmentControllerHeight = 45;
 -(void)configTableView:(SLBaseTableView*)tableView{
 
     DefineWeakSelf;
+    __block typeof(tableView)weakTableView = tableView;
+    
     
     //设置tableViewCell
     tableView.cellForRow = ^(UITableView * tableView,NSIndexPath*indexPath){
@@ -88,20 +120,205 @@ static CGFloat const KSegmentControllerHeight = 45;
         cell = [[[NSBundle mainBundle]loadNibNamed:@"SLOrderCell" owner:self options:nil]lastObject];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        
+        testModel * m = weakTableView.dataArr[indexPath.row];
+        cell.titleLabel.text = m.name;
+        cell.subTitleLabel.text = m.phoneNumber;
+        cell.btn.selected = m.selected;
+        cell.btnClickBlock = ^(BOOL seleted){
+            m.selected = seleted;
+            
+            SLNumberOfChooseView * numberOfChooseView = nil;
+            
+            if (weakSelf.carousel.currentItemIndex == 0) {
+                numberOfChooseView = weakSelf.numberOfChooseView;
+            }
+            else{
+                numberOfChooseView = weakSelf.numberOfChooseView2;
+            }
+            
+            NSInteger currentNumber = [numberOfChooseView.numberLabel.text integerValue];
+            
+            if (m.selected) {
+                currentNumber++;
+            }
+            else{
+                currentNumber--;
+            }
+            
+            if (currentNumber != weakTableView.dataArr.count) {
+                numberOfChooseView.selectAllButton.selected = NO;
+            }
+            
+            if (currentNumber == weakTableView.dataArr.count) {
+                numberOfChooseView.selectAllButton.selected = YES;
+            }
+            
+            
+            numberOfChooseView.numberLabel.text = [NSString stringWithFormat:@"%ld",(long)currentNumber];
+        };
         return cell;
     };
     
-    
+    //设置tableView的高度
     tableView.cellHeightBlock = ^{return 56.0;};
     
-    tableView.numberOfRowBlock = ^{return (NSInteger)weakSelf.data.count;};
     
+    //设置tableView的点击
     tableView.cellDidSelected = ^(NSIndexPath *indexPath){
-    
-    
+        SLDetailOfOrderViewController * detail = [[SLDetailOfOrderViewController alloc]init];
+        [weakSelf.navigationController pushViewController:detail animated:YES];
     };
     
+    
+    
 }
+
+
+-(void)tableView:(SLBaseTableView*)tableView configRefresh:(NSInteger)index{
+
+    __block typeof(tableView) weakTableView = tableView;
+    
+    DefineWeakSelf;
+    
+    //加载数据
+    tableView.headerRefresh = ^{
+        
+        [weakSelf tableView:weakTableView refreshDataWithIndex:index];
+    };
+
+    
+    tableView.footerRefresh = ^{
+    [weakSelf tableView:weakTableView loadDataWithIndex:index];
+    };
+}
+
+
+
+
+
+-(void)tableView:(SLBaseTableView*)tableView refreshDataWithIndex:(NSInteger)index{
+
+    sleep(3);
+    
+    if (index == 0) {
+        
+        
+        self.numberOfChooseView.selectAllButton.selected = NO;
+        
+        for (NSInteger i = 0; i<10; i++) {
+         
+            testModel * m = [[testModel alloc]initWithNotificationName:@"index0"];
+            m.name = @"用户名";
+            m.phoneNumber = @"1234567890";            [tableView.dataArr addObject:m];
+        }
+        
+        [tableView reloadData];
+        [tableView.tableView.mj_header endRefreshing];
+        
+    }
+    else{
+        for (NSInteger i = 0; i<10; i++) {
+            
+            testModel * m = [[testModel alloc]initWithNotificationName:@"index1"];
+            m.name = @"用户名";
+            m.phoneNumber = @"1234567890";
+            [tableView.dataArr addObject:m];
+        }
+        
+        [tableView reloadData];
+        [tableView.tableView.mj_header endRefreshing];
+    }
+}
+
+
+-(void)tableView:(SLBaseTableView*)tableView loadDataWithIndex:(NSInteger)index{
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        sleep(3);
+        
+        if (index == 0) {
+            for (NSInteger i = 0; i<10; i++) {
+                
+               
+                testModel * m = [[testModel alloc]initWithNotificationName:@"index0"];
+                m.name = @"用户名";
+                m.phoneNumber = @"1234567890";
+                [tableView.dataArr addObject:m];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [tableView reloadData];
+                [tableView.tableView.mj_footer endRefreshing];
+            });
+            
+        }
+        else{
+            for (NSInteger i = 0; i<10; i++) {
+                
+                testModel * m = [[testModel alloc]initWithNotificationName:@"index1"];
+                m.name = @"用户名";
+                m.phoneNumber = @"1234567890";
+                [tableView.dataArr addObject:m];
+    
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [tableView reloadData];
+                [tableView.tableView.mj_footer endRefreshing];
+  
+            });
+        }
+
+    });
+    
+  }
+
+
+//MARK: 设置底部视图
+-(void)configNumberOfView:(SLNumberOfChooseView*)view{
+   
+    view.buttonClickBlock = ^(UIButton * btn,NSInteger tag){
+        
+        //全选
+        if (tag == 100) {
+            [self selectedAll:btn];
+        }
+        
+        
+        //拒单
+        if (tag == 101) {
+            
+        }
+        
+        
+        //接单
+        if (tag == 102) {
+            
+        }
+        
+    };
+    
+    
+    
+}
+
+
+-(void)configNumberOfView2:(SLNumberOfChooseView*)view{
+    view.buttonClickBlock = ^(UIButton * btn,NSInteger tag){
+        //全选
+        if (tag == 100) {
+           [self selectedAll:btn];
+        }
+        //接单
+        if (tag == 102) {
+            
+        }
+    };
+}
+
 
 
 
@@ -118,16 +335,25 @@ static CGFloat const KSegmentControllerHeight = 45;
     if (view == nil) {
         view = [self createTabelView];
     }
+    
+    SLBaseTableView * tv = [view viewWithTag:100];
+    
+    [self tableView:tv configRefresh:index];
+    
     return view;
     
 }
 
 -(void)carouselDidScroll:(iCarousel *)carousel{
+    
     CGFloat  offset =  carousel.scrollOffset;
     CGFloat offset2 = carousel.width*offset;
     CGFloat indicatourX = offset2/self.segmentControllerView.itemCount;
 
     [self.segmentControllerView upDateIndicatorConstrait:indicatourX animate:NO];
+    
+    
+    self.numberOfChooseView.alpha = 1-offset;
 }
 
 - (void)carouselDidEndScrollingAnimation:(iCarousel *)carousel{
@@ -140,6 +366,56 @@ static CGFloat const KSegmentControllerHeight = 45;
 -(void)segment:(SLSegmentController *)seg didSelectedAtIndex:(NSInteger)index{
     [self.carousel scrollToItemAtIndex:index animated:YES];
 }
+
+//MARK:---------------actions--------------
+
+- (void)selectedAll:(UIButton*)button {
+    UIButton * btn = button;
+    NSString * selectName = nil;
+    NSString * deSelectName = nil;
+    
+    NSInteger index = -1;
+    
+    UIView * view =  self.carousel.currentItemView;
+    SLBaseTableView * tableView = [view viewWithTag:100];
+    
+    if ([button isDescendantOfView:self.numberOfChooseView]) {
+        index = 0;
+        selectName = @"index0SelectedAll";
+        deSelectName =@"index0DeselectedAll" ;
+    }
+    if ([button isDescendantOfView:self.numberOfChooseView2]) {
+        index = 1;
+        selectName = @"index1SelectedAll";
+        deSelectName =@"index1DeselectedAll" ;
+    }
+    
+    if (!btn.selected) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:selectName object:nil];
+        if (index == 0) {
+            self.numberOfChooseView.numberLabel.text = [NSString stringWithFormat:@"%ld",tableView.dataArr.count];
+        }
+        if (index == 1) {
+            self.numberOfChooseView2.numberLabel.text = [NSString stringWithFormat:@"%ld",tableView.dataArr.count];
+        }
+        
+    }
+    
+    else{
+        [[NSNotificationCenter defaultCenter]postNotificationName:deSelectName object:nil];
+        
+        if (index == 0) {
+            self.numberOfChooseView.numberLabel.text = @"0";
+        }
+        
+        if (index == 1) {
+            self.numberOfChooseView2.numberLabel.text = @"0";
+        }
+    }
+    [tableView reloadData];
+
+}
+
 
 
 
@@ -171,13 +447,28 @@ static CGFloat const KSegmentControllerHeight = 45;
 }
 
 
-
--(NSMutableArray *)data{
-    if (!_data) {
-        _data = [NSMutableArray array];
-        [_data addObjectsFromArray:@[@"1",@"2",@"3"]];
+-(SLNumberOfChooseView *)numberOfChooseView{
+    if (!_numberOfChooseView) {
+        _numberOfChooseView = [[SLNumberOfChooseView alloc]init];
+        [self configNumberOfView:_numberOfChooseView];
+        _numberOfChooseView.rejectBtn.hidden = YES;
+        [self.view addSubview:_numberOfChooseView];
     }
-    return _data;
+    
+    return _numberOfChooseView;
 }
+
+
+-(SLNumberOfChooseView *)numberOfChooseView2{
+    if (!_numberOfChooseView2) {
+        _numberOfChooseView2 = [[SLNumberOfChooseView alloc]init];
+        [self configNumberOfView2:_numberOfChooseView2];
+        [self.view addSubview:_numberOfChooseView2];
+    }
+    
+    return _numberOfChooseView2;
+}
+
+
 
 @end

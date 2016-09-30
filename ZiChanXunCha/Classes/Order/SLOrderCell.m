@@ -15,5 +15,14 @@
     // Initialization code
 }
 
+- (IBAction)buttonClicked:(id)sender {
+    UIButton * btn = (UIButton*)sender;
+    btn.selected = !btn.selected;
+    
+    if (self.btnClickBlock) {
+        self.btnClickBlock(btn.selected);
+    }
+    
+}
 
 @end

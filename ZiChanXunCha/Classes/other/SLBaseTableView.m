@@ -10,9 +10,6 @@
 
 @interface SLBaseTableView ()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>;
 
-@property (nonatomic,strong)UITableView * tableView;
-@property (strong, nonatomic) NSMutableArray *data;
-
 @end
 
 @implementation SLBaseTableView
@@ -22,7 +19,6 @@
     self = [super init];
     if (self) {
         
-        self.backgroundColor = [UIColor redColor];
     }
     return self;
 }
@@ -56,12 +52,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.numberOfRowBlock) {
-        return self.numberOfRowBlock();
-    }
-    else{
-    return 0 ;
-    }
+    return self.dataArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,16 +94,16 @@
 }
 
 
-- (NSMutableArray *)data
-{
-    if (!_data) {
-        self.data = [NSMutableArray array];
-        for (int i = 0; i<5; i++) {
-            [self.data addObject:MJRandomData];
-        }
-    }
-    return _data;
-}
+//- (NSMutableArray *)data
+//{
+//    if (!_data) {
+//        self.data = [NSMutableArray array];
+//        for (int i = 0; i<5; i++) {
+//            [self.data addObject:MJRandomData];
+//        }
+//    }
+//    return _data;
+//}
 
 
 #pragma -mark   ---------lazyLoad---------
@@ -127,6 +118,44 @@
     }
     return _tableView;
 }
+
+-(NSMutableArray *)dataArr{
+    if (!_dataArr) {
+        _dataArr = [NSMutableArray array];
+    }
+    return _dataArr;
+}
+
+//设置头部刷新
+-(void)setHeaderRefreshAvailable:(BOOL)headerRefreshAvailable{
+    DefineWeakSelf;
+    _headerRefreshAvailable = headerRefreshAvailable;
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        if (weakSelf.headerRefresh) {
+            weakSelf.headerRefresh();
+        }
+        
+    }];
+    
+}
+
+
+//设置底部刷新
+-(void)setFooterRefreshAvailable:(BOOL)footerRefreshAvailable{
+    DefineWeakSelf;
+    
+    _footerRefreshAvailable = footerRefreshAvailable;
+    
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        if (weakSelf.footerRefresh) {
+            weakSelf.footerRefresh();
+        }
+    }];
+    
+}
+
 
 
 @end

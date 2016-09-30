@@ -25,6 +25,38 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "2"
             endingLineNumber = "2">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SLFillOutInfomationCell3 titleLabel]"
+                  moduleName = "ZiChanXunCha"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shuanglong/Documents/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E8%B5%84%E4%BA%A7%E5%B7%A1%E6%9F%A5/ZiChanXunCha/ZiChanXunCha/Classes/LoginAndRegister%20/SLFillOutInfomationCell3.h"
+                  timestampString = "496923723.877431"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SLFillOutInfomationCell3 setTitleLabel:]"
+                  moduleName = "ZiChanXunCha"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shuanglong/Documents/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E8%B5%84%E4%BA%A7%E5%B7%A1%E6%9F%A5/ZiChanXunCha/ZiChanXunCha/Classes/LoginAndRegister%20/SLFillOutInfomationCell3.h"
+                  timestampString = "496923723.879205"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "49">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

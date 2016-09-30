@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^btnClickBlock)(BOOL selected);
+
 @interface SLOrderCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIButton *btn;
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
+
+@property(nonatomic,copy)btnClickBlock(btnClickBlock);
+
 
 @end
