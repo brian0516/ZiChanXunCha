@@ -20,10 +20,10 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self addChildViewController:@"SLOrderViewController" title:@"接单" image:@"order"];
-    [self addChildViewController:@"SLOrderListViewController" title:@"订单" image:@"order"];
-    [self addChildViewController:@"SLMineViewController" title:@"我的" image:@"order"];
-    [self addChildViewController:@"SLMoreViewController" title:@"更多" image:@"order"];
+    [self addChildViewController:@"SLOrderViewController" title:@"接单" image:@"xc_bottom_jd"];
+    [self addChildViewController:@"SLOrderListViewController" title:@"订单" image:@"xc_bottom_dd"];
+    [self addChildViewController:@"SLMyViewController" title:@"我的" image:@"xc_bottom_my"];
+    [self addChildViewController:@"SLMoreViewController" title:@"更多" image:@"xc_bottom_more"];
     
 }
 
@@ -34,7 +34,7 @@
 -(void)addChildViewController:(NSString*)viewControllerName title:(NSString*)title image:(NSString*)imageName{
     
     Class class = NSClassFromString(viewControllerName);
-   SLBaseViewController  * viewController = [[class alloc]initWithTitle:title tabBarItemImage:[UIImage imageNamed:imageName]];
+   SLBaseViewController  * viewController = [[class alloc]initWithTitle:title tabBarItemImage:imageName];
     SLNavigationController * nv = [[SLNavigationController alloc]initWithRootViewController:viewController];
     [self addChildViewController:nv];
     

@@ -16,5 +16,14 @@
     self.cornerRadius = [radius floatValue];
 }
 
+-(void)setLayerBorderColor:(UIColor*)color{
+    self.borderColor = color.CGColor;
+}
+
+-(void)setLayerBorderWidth:(NSNumber*)width{
+    self.borderWidth = [width floatValue];
+}
+
+
 
 @end

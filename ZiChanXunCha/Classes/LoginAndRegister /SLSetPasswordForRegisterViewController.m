@@ -36,7 +36,7 @@ static CGFloat const KNoticeLabelTopOffSet = 10.0f;
 static CGFloat const KRegisterBtnWidth = 230;
 static CGFloat const KRegisterBtnTopOffSet = 30;
 
-@interface SLSetPasswordForRegisterViewController ()
+@interface SLSetPasswordForRegisterViewController ()<UITextFieldDelegate>
 
 @property (nonatomic,strong)UIImageView * logoImageView;
 
@@ -116,11 +116,60 @@ static CGFloat const KRegisterBtnTopOffSet = 30;
     }];
     
 }
+#pragma -mark delegate---
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+
+    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if (self.passwordTF.superview == self.passwordTF) {
+        if (text.length>0&&self.confirmPasswordTF.contentText.length>0){
+            self.registerBtn.enabled = YES;
+        }
+        else{
+            self.registerBtn.enabled = NO;
+        }
+    }
+
+    else{
+        if (text.length>0&&self.passwordTF.contentText.length>0){
+            self.registerBtn.enabled = YES;
+        }
+        else{
+            self.registerBtn.enabled = NO;
+        }
+    
+    }
+    
+    
+    return YES;
+}
+
 
 
 #pragma -mark acttions---
 
 -(void)registerBtnClicked:(id)sender{
+    
+    //等键盘回收;
+    [SLRegisterModel defaultInstance].password = self.passwordTF.contentText;
+    [SLRegisterModel defaultInstance].confirmPassword = self.confirmPasswordTF.contentText;
+    
+
+    if ([[SLRegisterModel defaultInstance] isInfoAvailable]) {
+        self.registerBtn.enabled = NO;
+    }
+    
+    NSString * registerUrl = [NSString stringWithFormat:@"%@%@",KBaseUrl,KRegisterUrlString];
+    
+//    [[SLRegisterModel defaultInstance]requestWithUrl:registerUrl Block:^(BOOL success, SLRegisterFeedBackInfo *registerFeedBackInfo) {
+//        self.registerBtn.enabled = YES;
+//        
+//        
+//        
+//    }];
+    
+    
+    
     SLQuestionsViewController * Questions = [[SLQuestionsViewController alloc]init];
     [self.navigationController pushViewController:Questions animated:YES];
     
@@ -144,6 +193,7 @@ static CGFloat const KRegisterBtnTopOffSet = 30;
     if (!_passwordTF) {
         _passwordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldStyleDefault PreFixImage:[UIImage imageNamed:@"xc_password"] placeholder:@"请输入密码" subFixImages:nil];
         _passwordTF.secureTextEntry = YES;
+        _passwordTF.delegate = self;
         [self.view addSubview:_passwordTF];
     }
     return _passwordTF;
@@ -154,6 +204,7 @@ static CGFloat const KRegisterBtnTopOffSet = 30;
     if (!_confirmPasswordTF) {
         _confirmPasswordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldStyleDefault PreFixImage:[UIImage imageNamed:@"xc_password"] placeholder:@"请再次输入密码" subFixImages:nil];
         _confirmPasswordTF.secureTextEntry = YES;
+        _confirmPasswordTF.delegate = self;
         [self.view addSubview:_confirmPasswordTF];
     }
     return _confirmPasswordTF;
@@ -179,6 +230,9 @@ static CGFloat const KRegisterBtnTopOffSet = 30;
         [_registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_registerBtn addTarget:self action:@selector(registerBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         [_registerBtn setBackgroundColor:[UIColor colorWithHexString:KRegisterBtnBgColor] ForState:UIControlStateNormal];
+        [_registerBtn setBackgroundColor:UIColorHex(cccccc) ForState:UIControlStateDisabled];
+        _registerBtn.enabled = NO;
+        
         [self.view addSubview:_registerBtn];
     }
     return _registerBtn;

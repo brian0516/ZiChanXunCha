@@ -8,6 +8,11 @@
 
 #import "SLSegmentController.h"
 
+#define KBadgeLabelBase 200
+#define KMaxHeight  20
+#define KTitleLabelBase 100
+
+
 @interface SLSegmentController ()
 
 @property(nonatomic,strong)UIColor * normalColor;
@@ -41,10 +46,58 @@
 }
 
 
+-(void)setBadgeValue:(NSInteger)value atIndex:(NSInteger)index{
+
+    if (index+1 > _itemCount) {
+        return;
+    }
+
+    UILabel * badgeLabel = [self viewWithTag:KBadgeLabelBase+index];
+    if (badgeLabel == nil || !badgeLabel) {
+        badgeLabel = [[UILabel alloc]init];
+        badgeLabel.font = [UIFont systemFontOfSize:15];
+        badgeLabel.backgroundColor = [UIColor redColor];
+        badgeLabel.textAlignment = NSTextAlignmentCenter;
+        badgeLabel.textColor = [UIColor whiteColor];
+        [self addSubview:badgeLabel];
+    }
+    
+    //设置value
+    badgeLabel.text = [NSString stringWithFormat:@"%ld",(long)value];
+    
+    //设置frame,并设置圆角
+  
+    CGSize s = [badgeLabel.text sizeForFont:badgeLabel.font size:CGSizeMake(100, KMaxHeight) mode:NSLineBreakByClipping];
+    if (s.height<KMaxHeight) {
+        s.height = KMaxHeight;
+    }
+    
+    if (s.width<KMaxHeight) {
+        s.width = KMaxHeight;
+    }
+    
+    
+    UILabel * l = [self viewWithTag:KTitleLabelBase+index];
+    CGSize s2 = [l.text sizeForFont:l.font size:l.bounds.size mode:NSLineBreakByCharWrapping];
+    
+    CGFloat x = kScreenWidth/_itemCount*index;
+    x+= (((kScreenWidth/_itemCount-s2.width)/2)+s2.width-s.width/2);
+
+    CGFloat y = (44-s2.height)/2-s.height/2;
+    
+    CGPoint point = CGPointMake(x-badgeLabel.width/2,y+badgeLabel.height/2);
+    
+    badgeLabel.frame = CGRectMake(point.x,point.y,s.width,s.height);
+    badgeLabel.layer.cornerRadius = s.height/2;
+    badgeLabel.layer.masksToBounds = YES;
+}
+
+
+
 -(NSArray*)createLabels:(NSArray*)titles{
     NSMutableArray * array = [NSMutableArray array];
     
-    NSInteger tag = 100;
+    NSInteger tag = KTitleLabelBase;
     
     for (NSString * title in titles) {
         UILabel * label = [[UILabel alloc]init];
@@ -57,7 +110,7 @@
         [self addSubview:label];
         [array addObject:label];
         
-        if (tag == 100) {
+        if (tag == KTitleLabelBase) {
             label.textColor = self.selectedColor;
         }
         else{

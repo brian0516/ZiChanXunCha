@@ -39,15 +39,15 @@
                         <constraint firstAttribute="height" constant="0.5" id="REi-Y7-7Jy"/>
                     </constraints>
                 </view>
-                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoL-1k-RPd">
+                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OoL-1k-RPd">
                     <constraints>
                         <constraint firstAttribute="width" secondItem="OoL-1k-RPd" secondAttribute="height" multiplier="1:1" id="e2Y-ZC-9ZZ"/>
                     </constraints>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" backgroundImage="1.png">
+                    <state key="normal" backgroundImage="xc_quanxuan">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
-                    <state key="selected" backgroundImage="2.png"/>
+                    <state key="selected" backgroundImage="xc_qxz"/>
                     <connections>
                         <action selector="buttonClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="MZa-0s-2eF"/>
                     </connections>
@@ -122,7 +122,7 @@
         </view>
     </objects>
     <resources>
-        <image name="1.png" width="106" height="106"/>
-        <image name="2.png" width="110" height="110"/>
+        <image name="xc_quanxuan" width="54" height="50"/>
+        <image name="xc_qxz" width="54" height="50"/>
     </resources>
 </document>

@@ -27,7 +27,7 @@ typedef void(^registerFeedBackBlock)(BOOL success,SLRegisterFeedBackInfo* regist
 /**
  *  发起请求
  */
--(void)requestWithBlock:(registerFeedBackBlock)feedBackBlock;
+-(void)requestWithUrl:(NSString*)urlString Block:(registerFeedBackBlock)feedBackBlock;
 
 /**
  *  判断提交的信息是否符合要求
@@ -71,7 +71,7 @@ typedef void(^registerFeedBackBlock)(BOOL success,SLRegisterFeedBackInfo* regist
 @interface SLRegisterModel : SLLoginAndRegisterRequest
 
 @property (nonatomic,strong)NSString *confirmPassword;
-@property (nonatomic,strong)NSString *verify; //是否验证通过
+@property (nonatomic,strong)NSString *vcode;
 
 +(instancetype)defaultInstance;
 

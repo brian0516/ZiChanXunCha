@@ -4,13 +4,19 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
+            filePath = "ZiChanXunCha/Classes/OrderList/SLCell2.m"
+            timestampString = "498025351.454925"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "-textViewDidChange:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -19,44 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ZiChanXunCha/Classes/LoginAndRegister /SLFillOutInfomationCell3.h"
-            timestampString = "496834817.451462"
+            filePath = "ZiChanXunCha/ViewControllers/RSADemoViewController.m"
+            timestampString = "498102651.448128"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2"
-            endingLineNumber = "2">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SLFillOutInfomationCell3 titleLabel]"
-                  moduleName = "ZiChanXunCha"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shuanglong/Documents/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E8%B5%84%E4%BA%A7%E5%B7%A1%E6%9F%A5/ZiChanXunCha/ZiChanXunCha/Classes/LoginAndRegister%20/SLFillOutInfomationCell3.h"
-                  timestampString = "496923723.877431"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SLFillOutInfomationCell3 setTitleLabel:]"
-                  moduleName = "ZiChanXunCha"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shuanglong/Documents/%E5%B7%A5%E4%BD%9C%E7%9B%B8%E5%85%B3/%E8%B5%84%E4%BA%A7%E5%B7%A1%E6%9F%A5/ZiChanXunCha/ZiChanXunCha/Classes/LoginAndRegister%20/SLFillOutInfomationCell3.h"
-                  timestampString = "496923723.879205"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "49">
-               </Location>
-            </Locations>
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-click"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

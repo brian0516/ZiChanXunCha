@@ -8,7 +8,9 @@
 
 #import "SLMoreViewController.h"
 
-@interface SLMoreViewController ()
+@interface SLMoreViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic,strong) UITableView * tableView;
 
 @end
 
@@ -16,22 +18,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self.view addSubview:self.tableView];
+    
+    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 2;
 }
 
-/*
-#pragma mark - Navigation
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UITableViewCell * cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    
+    NSString * string = indexPath.row == 0?@"帮助":@"意见反馈";
+    cell.textLabel.text  = string;
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
 }
-*/
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+
+}
+
+
+
+
+-(UITableView *)tableView{
+    if (!_tableView) {
+        _tableView = [[UITableView alloc]init];
+        _tableView.frame = CGRectMake(0, 10, self.view.width, self.view.height);
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.rowHeight = 50;
+        _tableView.tableFooterView = [UIView new];
+        _tableView.backgroundColor = UIColorHex(f4f4f4);
+    }
+   return _tableView;
+}
+
 
 @end

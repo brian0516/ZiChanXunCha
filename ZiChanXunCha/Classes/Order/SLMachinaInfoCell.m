@@ -8,17 +8,37 @@
 
 #import "SLMachinaInfoCell.h"
 
+@interface SLMachinaInfoCell ()
+
+@property (weak, nonatomic) IBOutlet UIView *myBackgroundView;
+
+
+@end
+
+
 @implementation SLMachinaInfoCell
 
-- (void)awakeFromNib {
+
+-(void)awakeFromNib{
     [super awakeFromNib];
-    // Initialization code
+    self.myBackgroundView.layer.cornerRadius = 3;
+    self.myBackgroundView.layer.borderWidth = 0.5;
+    self.myBackgroundView.layer.borderColor = UIColorHex(cccccc).CGColor;
+    self.myBackgroundView.layer.masksToBounds = YES;
+
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(instancetype)init{
+    return [SLMachinaInfoCell loadFromNib];
+    
+    
 }
+
++(SLMachinaInfoCell*)loadFromNib{
+    SLMachinaInfoCell  * cell = [[[NSBundle mainBundle]loadNibNamed:@"SLMachinaInfoCell" owner:self options:nil]lastObject];
+    
+    return cell;
+}
+
 
 @end

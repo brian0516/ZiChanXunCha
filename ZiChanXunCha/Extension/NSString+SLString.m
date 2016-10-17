@@ -7,6 +7,9 @@
 //
 
 #import "NSString+SLString.h"
+#import "AES.h"
+
+static NSString * const AESKey = @"!@#$%12345678901";
 
 @implementation NSString (SLString)
 
@@ -44,6 +47,8 @@
     
     return isMatch;
 }
+
+
 
 
 

@@ -30,4 +30,9 @@
 
 -(void)setSelectedIndex:(NSInteger)selectedIndex;
 
+//设置角标
+-(void)setBadgeValue:(NSInteger)value atIndex:(NSInteger)index;
+
+
+
 @end

@@ -19,7 +19,7 @@ static CGFloat const KVerticalLineTopAndBottomMargin = 10.0f;
 
 
 
-@interface SLLoginTextField ()
+@interface SLLoginTextField ()<UITextFieldDelegate>
 
 @property(nonatomic,strong) UIImageView * preFixImageView;   //顶端的视图
 @property(nonatomic,strong) UIButton * subButton;   //尾部的视图
@@ -33,6 +33,26 @@ static CGFloat const KVerticalLineTopAndBottomMargin = 10.0f;
 @end
 
 @implementation SLLoginTextField
+
+-(BOOL)becomeFirstResponder{
+    [super becomeFirstResponder];
+    if (_textField) {
+        [_textField becomeFirstResponder];
+        return YES;
+    }
+    return NO;
+}
+
+
+-(BOOL)resignFirstResponder{
+    [super resignFirstResponder];
+    if (_textField) {
+        [_textField resignFirstResponder];
+        return YES;
+    }
+    return NO;
+}
+
 
 -(instancetype)initWithStyle:(SLLoginTextFieldStyle)style PreFixImage:(UIImage*)image placeholder:(NSString*)placeholder subFixImages:(NSArray*)subImages{
 
@@ -66,6 +86,33 @@ static CGFloat const KVerticalLineTopAndBottomMargin = 10.0f;
     return self;
 }
 
+
+//MARK:----------textFildDelegate---------
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (self.returnButtonClick) {
+        self.returnButtonClick();
+    }
+    
+    DLog(@"点击了retunButton")
+    return YES;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+  
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if (self.textFieldDidEndEditingBlock) {
+        self.textFieldDidEndEditingBlock(text);
+    }
+    return YES;
+}
+
+
+
+//MARK: --------setterAndGetter-----
 //设置键盘
 -(void)setKeyboardType:(UIKeyboardType)keyboardType{
     _keyboardType = keyboardType;
@@ -191,6 +238,7 @@ static CGFloat const KVerticalLineTopAndBottomMargin = 10.0f;
     if (!_textField) {
         _textField = [[UITextField alloc]init];
         _textField.backgroundColor = [UIColor whiteColor];
+        _textField.delegate = self;
         [self addSubview:_textField];
     }
     return _textField;
@@ -213,5 +261,24 @@ static CGFloat const KVerticalLineTopAndBottomMargin = 10.0f;
     }
     return _bottomLine;
 }
+
+-(NSString *)contentText{
+    return self.textField.text;
+}
+
+
+-(void)setDelegate:(id<UITextFieldDelegate>)delegate{
+    _textField.delegate = delegate;
+    _delegate = delegate;
+
+}
+
+-(void)setReturnType:(UIReturnKeyType)returnType{
+    _returnType = returnType;
+    _textField.returnKeyType = returnType;
+}
+
+
+
 
 @end

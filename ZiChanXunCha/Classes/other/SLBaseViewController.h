@@ -10,7 +10,7 @@
 
 @interface SLBaseViewController : UIViewController
 
--(instancetype)initWithTitle:(NSString*)t tabBarItemImage:(UIImage*)img;
+-(instancetype)initWithTitle:(NSString*)t tabBarItemImage:(NSString*)img;
 
 
 @end

@@ -29,12 +29,13 @@
 }
 
 
--(instancetype)initWithTitle:(NSString *)t tabBarItemImage:(UIImage *)img{
+-(instancetype)initWithTitle:(NSString *)t tabBarItemImage:(NSString *)img{
     self = [super init];
     if (self) {
         self.title = t;
-        self.tabBarItem.title = t;
-        self.tabBarItem.image = img;
+        self.tabBarItem.image = [UIImage imageNamed:img];
+        NSString * seletedImage = [NSString stringWithFormat:@"%@_selected",img];
+        self.tabBarItem.selectedImage = [UIImage imageNamed:seletedImage];
     }
     return self;
 

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SLUnannouncedHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gad-Dh-8nc">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="stretchableImageWithName" value="backgroundImage-4"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="村中巡查：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XwN-3Z-ADm">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="反馈信息一" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhO-85-snu">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="xc_xiala" translatesAutoresizingMaskIntoConstraints="NO" id="d2s-QX-DBb"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A9b-8L-nmi">
+                    <state key="normal" image="xc_delete-1"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Gad-Dh-8nc" secondAttribute="trailing" id="6jf-z5-qZZ"/>
+                <constraint firstItem="Gad-Dh-8nc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="A2F-YV-Ni3"/>
+                <constraint firstItem="XwN-3Z-ADm" firstAttribute="centerY" secondItem="Gad-Dh-8nc" secondAttribute="centerY" id="CLz-lM-mHA"/>
+                <constraint firstItem="fhO-85-snu" firstAttribute="centerY" secondItem="XwN-3Z-ADm" secondAttribute="centerY" id="KQA-vf-QuR"/>
+                <constraint firstItem="d2s-QX-DBb" firstAttribute="trailing" secondItem="Gad-Dh-8nc" secondAttribute="trailing" constant="-10" id="WoF-aU-hhu"/>
+                <constraint firstItem="fhO-85-snu" firstAttribute="leading" secondItem="XwN-3Z-ADm" secondAttribute="trailing" id="YQr-Tm-hK8"/>
+                <constraint firstItem="A9b-8L-nmi" firstAttribute="trailing" secondItem="d2s-QX-DBb" secondAttribute="leading" constant="-15" id="dSZ-MN-lc6"/>
+                <constraint firstItem="d2s-QX-DBb" firstAttribute="centerY" secondItem="Gad-Dh-8nc" secondAttribute="centerY" id="liG-LL-gja"/>
+                <constraint firstItem="A9b-8L-nmi" firstAttribute="centerY" secondItem="XwN-3Z-ADm" secondAttribute="centerY" id="lsC-S1-8Tc"/>
+                <constraint firstAttribute="bottom" secondItem="Gad-Dh-8nc" secondAttribute="bottom" id="me8-iZ-q42"/>
+                <constraint firstItem="XwN-3Z-ADm" firstAttribute="leading" secondItem="Gad-Dh-8nc" secondAttribute="leading" constant="15" id="n4y-s0-sxV"/>
+                <constraint firstItem="Gad-Dh-8nc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="yeb-rv-m43"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="83.5" y="-230"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="xc_delete-1" width="15" height="14"/>
+        <image name="xc_xiala" width="12" height="6"/>
+    </resources>
+</document>

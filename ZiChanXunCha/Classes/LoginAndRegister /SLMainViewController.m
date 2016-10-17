@@ -11,6 +11,9 @@
 #import "SLPlayVideoController.h"
 #import "SLLoginTextField.h"
 #import "SLRegisterViewController.h"
+#import "SLLoginAndRegisterRequest.h"
+
+
 
 //-------------以下为测试------
 #import "SLFillOutPersonalInfomationViewController.h"
@@ -61,6 +64,8 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
 @property (nonatomic,strong) UIView * temView; //透明层
 @property (nonatomic,strong) UIImageView * noticeImageView;
 
+@property (nonatomic)CGFloat deltaY;
+
 @end
 
 
@@ -71,11 +76,14 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardChangeFrame:) name:UIKeyboardDidChangeFrameNotification object:nil];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     self.navigationController.navigationBarHidden = NO;
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIKeyboardDidChangeFrameNotification object:nil];
+    
 }
 
 
@@ -84,9 +92,42 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
     self.view.backgroundColor = [UIColor colorWithHexString:KBgColor];
     [self _layoutSubViews];
     
-    self.navigationController.navigationBarHidden = YES;
 }
 
+/*
+-(void)updateViewConstraints{
+    
+    DefineWeakSelf;
+    
+    [self.passwordTF mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@(KLeftAndRightMargin));
+        make.right.equalTo(@(-KLeftAndRightMargin));
+        make.centerY.equalTo(weakSelf.view.mas_centerY).offset(self.deltaY);
+        make.height.equalTo(@(KBtnAndTextFieldHeight));
+    }];
+    
+    //布局"输入用户名"
+    [self.userNameTF mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.leftMargin.equalTo(weakSelf.passwordTF);
+        make.rightMargin.equalTo(weakSelf.passwordTF);
+        make.height.equalTo(weakSelf.passwordTF);
+        make.centerY.equalTo(weakSelf.view.mas_centerY).offset(-(KBtnAndTextFieldHeight+KVerticalGapNormal)+self.deltaY);
+    }];
+    
+    //布局"登录按钮"
+    [self.loginBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.leftMargin.equalTo(weakSelf.passwordTF);
+        make.rightMargin.equalTo(weakSelf.passwordTF);
+        make.height.equalTo(weakSelf.passwordTF);
+        make.centerY.equalTo(weakSelf.view.mas_centerY).offset(KBtnAndTextFieldHeight+KVerticalGapNormal+self.deltaY);
+    }];
+
+    
+    
+    [super updateViewConstraints];
+}
+
+*/
 
 #pragma - mark ---------privateMethod------------
 
@@ -197,23 +238,58 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
 //    AppDelegate * delegate = [UIApplication sharedApplication].delegate;
 //    [delegate configRootViewController:@"SLMainTabBarController"];
     
-    
-    
-    
+
 }
 
 #pragma -mark ------------ actions-----------
 
+-(void)keyboardChangeFrame:(NSNotification*)notif{
+    //获取button的frame
+    CGFloat loginBtnBottom = self.loginBtn.bottom;
+    
+    NSValue *keyboardBoundsValue = [[notif userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardFrame = [keyboardBoundsValue CGRectValue];
+    CGFloat keyboardTop = keyboardFrame.origin.y;
+    
+    //计算
+    if (keyboardTop == self.view.height) {
+        self.deltaY = 0;
+    }
+    //遮挡
+    else if (loginBtnBottom>keyboardTop) {
+        self.deltaY = keyboardTop-loginBtnBottom-10;
+    }
+    
+    else{
+    
+    }
+    
+    // 告诉self.view约束需要更新
+    [self.view setNeedsUpdateConstraints];
+    // 调用此方法告诉self.view检测是否需要更新约束，若需要则更新，下面添加动画效果才起作用
+    [self.view updateConstraintsIfNeeded];
+    
+    [UIView animateWithDuration:0.15 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+
+ }
+
+
 // TODO 登录
 -(void)login{
-
-    SLFillOutPersonalInfomationViewController * fillOut = [[SLFillOutPersonalInfomationViewController alloc]init];
-    [self.navigationController pushViewController:fillOut animated:YES];
-    
-    
-    
-    
+    NSString * url = [NSString stringWithFormat:@"%@%@",KBaseUrl,KLoginUrlString];
+    [[SLLoginModel defaultInstance]requestWithUrl:url Block:^(BOOL success, SLRegisterFeedBackInfo *registerFeedBackInfo) {
+        if (success) {
+            SLFillOutPersonalInfomationViewController * fillOut = [[SLFillOutPersonalInfomationViewController alloc]init];
+            [self.navigationController pushViewController:fillOut animated:YES];
+        }
+        else{
+            DLog(@"+++++");
+        }
+    }];
 }
+
 
 
 // TODO 找回密码
@@ -268,7 +344,17 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
 //输入用户名
 -(SLLoginTextField *)userNameTF{
     if (!_userNameTF) {
+        DefineWeakSelf;
         _userNameTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldCorner PreFixImage:[UIImage imageNamed:@"xc_usename"] placeholder:@"请输入用户名/手机号" subFixImages:nil];
+        _userNameTF.returnType = UIReturnKeyNext;
+        _userNameTF.returnButtonClick = ^{
+            [weakSelf.passwordTF becomeFirstResponder];
+        };
+        
+        _userNameTF.textFieldDidEndEditingBlock = ^(NSString*text){
+            //TODO:
+            [SLLoginModel defaultInstance].mobile = text;
+        };
         [self.view addSubview:_userNameTF];
     }
     return _userNameTF;
@@ -279,13 +365,24 @@ static CGFloat const KNoticeImageViewBottomOffSet = 15.0f;
     if (!_passwordTF) {
         
         _passwordTF = [[SLLoginTextField alloc]initWithStyle:SLLoginTextFieldCorner PreFixImage:[UIImage imageNamed:@"xc_password"] placeholder:@"请输入密码" subFixImages:@[[UIImage imageNamed:@"xc_watch"],[UIImage imageNamed:@"xc_nosee"]]];
+        _userNameTF.returnType = UIReturnKeyDone;
         _passwordTF.secureTextEntry = YES;
-        
         
         __block typeof(_passwordTF) weakPasswordTF = _passwordTF;
         _passwordTF.buttonBlock = ^{
             weakPasswordTF.secureTextEntry = !weakPasswordTF.secureTextEntry;
         };
+        
+        _passwordTF.returnButtonClick = ^{
+            [weakPasswordTF resignFirstResponder];
+        };
+        
+        
+        _passwordTF.textFieldDidEndEditingBlock = ^(NSString * text){
+            [SLLoginModel defaultInstance].password = text;
+        };
+        
+        
         [self.view addSubview:_passwordTF];
     }
     return _passwordTF;

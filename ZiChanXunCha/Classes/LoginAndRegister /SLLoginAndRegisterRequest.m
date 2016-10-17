@@ -11,42 +11,46 @@
 @implementation SLLoginAndRegisterRequest
 
 
--(void)requestWithBlock:(registerFeedBackBlock)feedBackBlock{
+-(void)requestWithUrl:(NSString*)urlString Block:(registerFeedBackBlock)feedBackBlock{
     
+    BOOL isAvailable = [self isInfoAvailable];
+    if (!isAvailable) {
+        return;
+    }
     //将model转为json
-    
-    NSDictionary * paratmeters = [self modelToJSONObject];
-    
-    /*
-    [PPNetworkHelper POST:KUrl_UserRegister parameters:paratmeters success:^(id responseObject) {
+      NSDictionary * paratmeters = [SLRequestHelper parametersFromModel:self];
+
+    [PPNetworkHelper POST:urlString parameters:paratmeters success:^(id responseObject) {
         
-        SLRegisterFeedBackInfo * feedBackInfo = [SLRegisterFeedBackInfo modelWithJSON:responseObject];
-        
-        if (feedBackBlock) {
-            feedBackBlock(YES,feedBackInfo);
+        if (responseObject == nil || !responseObject ) {
+            if (feedBackBlock) {
+                feedBackBlock(NO,nil);
+            }
+            return ;
         }
         
         
+        NSDictionary * dictionary = [SLRequestHelper responseDictionary:responseObject];
+        
+        SLRequestStatusModel * status = [SLRequestStatusModel modelWithJSON:dictionary];
+        if (status.code != 200) {
+            [XHToast showCenterWithText:status.msg];
+            if (feedBackBlock) {
+                feedBackBlock(NO,nil);
+            }
+        }
+        else{
+            SLRegisterFeedBackInfo * feedBackInfo = [SLRegisterFeedBackInfo modelWithJSON:dictionary[@"data"]];
+            if (feedBackBlock) {
+                feedBackBlock(YES,feedBackInfo);
+            }
+        }
     } failure:^(NSError *error) {
         if (feedBackBlock) {
             feedBackBlock(NO,nil);
+            [XHToast showCenterWithText:@"网络故障,请稍后再试!"];
         }
     }];
-    
-    */
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        NSData *data = [NSData dataNamed:@"RegisterFeedBack.json"];
-        SLRegisterFeedBackInfo * feedBackInfo = [SLRegisterFeedBackInfo modelWithJSON:data];
-        
-        if (feedBackBlock) {
-            feedBackBlock(YES,feedBackInfo);
-        }
-        
-    });
-     
-
 }
 
 
@@ -63,6 +67,7 @@
 -(BOOL)isMobileAvailable{
     
     if ([self.mobile isBlackString]||![self.mobile telephoneRegular]) {
+          [XHToast showCenterWithText:@"请检查电话号码是否正确!"];
         return NO;
     }
     return YES;
@@ -125,18 +130,31 @@
 
 
 
+
+
+
+
 //重写password判断
 -(BOOL)isPasswordAvailable{
 
-        if (![self.password isEqualToString:self.confirmPassword]) {
-            return NO;
-        }
-    return [self.password passwordRegular];
+    if (![self.password isEqualToString:self.confirmPassword]) {
+        [XHToast showCenterWithText:@"请检查密码是否一致!"];
+        return NO;
+    }
+    
+    BOOL r = [self.password passwordRegular];
+    if (!r) {
+        [XHToast showCenterWithText:@"密码格式不正确"];
+    }
+    
+    
+    return r;
 }
 
 //重写验证码判断
 -(BOOL)isIdentifyCodeAvailable{
-    if ([self.verify isBlackString]) {
+    if ([self.vcode isBlackString]) {
+        [XHToast showCenterWithText:@"请检查验证码是否正确!"];
         return NO;
     }
     

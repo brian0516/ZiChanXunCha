@@ -21,11 +21,19 @@ typedef void(^buttonBlock)();
 
 @property(nonatomic,assign)UIKeyboardType  keyboardType;
 
+@property(nonatomic,assign)UIReturnKeyType  returnType;
+
 @property (nonatomic,assign) BOOL secureTextEntry;
 
 @property (nonatomic,copy) buttonBlock(buttonBlock);
 
+@property (nonatomic,strong)NSString * contentText;
 
+@property(nonatomic,assign)id<UITextFieldDelegate>delegate;
+
+@property(nonatomic,strong)void(^returnButtonClick)();
+
+@property(nonatomic,strong)void(^textFieldDidEndEditingBlock)(NSString*string);
 
 
 /**

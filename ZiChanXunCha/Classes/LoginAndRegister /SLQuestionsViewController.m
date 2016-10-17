@@ -148,10 +148,17 @@ static CGFloat const KCommitBtnWidth = 75;
     //设置提交按钮的隐藏和显示
     
     if (currentPage == carousel.numberOfItems) {
-        self.commitBtn.hidden = NO;
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            self.commitBtn.hidden = NO;
+            self.pageLabel.hidden = YES;
+        }];
+        
+       
     }
     else{
         self.commitBtn.hidden = YES;
+        self.pageLabel.hidden = NO;
     }
     
 }

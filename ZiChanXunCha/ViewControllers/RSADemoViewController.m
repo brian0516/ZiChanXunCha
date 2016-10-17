@@ -9,11 +9,18 @@
 #import "RSADemoViewController.h"
 #import "AES.h"
 #import "SLSegmentController.h"
+#import "SLRegionsModel.h"
+#import "TZImagePickerController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <Photos/Photos.h>
 
-
-@interface RSADemoViewController ()
+@interface RSADemoViewController ()<TZImagePickerControllerDelegate>
 
 @property(nonatomic,assign) id encryptData;
+
+@property (nonatomic,strong)UIImageView * imageView;
+
+@property(nonatomic,strong)UIButton * btn;
 
 @end
 
@@ -22,8 +29,86 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
 
+    //测试地址选择
+//    NSString * filePath = [[NSBundle mainBundle]pathForResource:@"regionLoanLibs" ofType:@"js"];
+//    NSString * jsonString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+//
+//    SLRegionsModel * regions = [SLRegionsModel modelWithJSON:jsonString];
+
+    
+    self.imageView = [[UIImageView alloc]init];
+    self.imageView.frame = CGRectMake(0, 0, 200, 200);
+    self.imageView.center = self.view.center;
+    self.imageView.top-=150;
+    self.imageView.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:self.imageView];
+    
+    
+    self.btn = [[UIButton alloc]init];
+    self.btn.backgroundColor = [UIColor grayColor];
+    self.btn.frame = CGRectMake(0, 0, 200, 44);
+    self.btn.centerX = self.imageView.centerX;
+    self.btn.top = self.imageView.bottom+50;
+    self.btn.layer.cornerRadius = 22;
+    self.btn.layer.masksToBounds = YES;
+    [self.btn addTarget:self action:@selector(click) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.btn];
+    
+    
+}
+
+
+-(void)click{
+
+    if (self.imageView.image) {
+        
+        NSString * url = [NSString stringWithFormat:@"%@app/appDatafile/uploadPatrolPic.action",KBaseUrl];
+        
+        NSDictionary * dic = @{
+                               @"tokenStr":@"ff2f860408d2b72c7d0764f3",
+                               @"admittanceApplyId":@"781fff86-85f1-11e6-af0e-b0ad5089be1e",
+                               @"launchApplyId":@"dab51418-8e90-11e6-ba9b-f13b52e8983f",
+                               @"classifiId":@"1",
+                               };
+        
+        NSDictionary * parameters = [SLRequestHelper parametersFromModel:dic];
+        
+        //上传图片
+        [PPNetworkHelper uploadWithURL:url parameters:parameters images:@[self.imageView.image] name:@"图片名称" fileName:@"fileName" mimeType:@"png" progress:^(NSProgress *progress) {
+            
+        } success:^(id responseObject) {
+            
+            DLog(@"++++++++长传成功")
+            
+        } failure:^(NSError *error) {
+            DLog(@"++++++++长传失败")
+        }];
+        
+    }
+    
+    
+    else{
+    //图片多选
+        TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:5 columnNumber:2 delegate:self pushPhotoPickerVc:YES];
+        [self presentViewController:imagePickerVc animated:YES completion:nil];
+        
+    }
+}
+
+
+-(void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto{
+
+    self.imageView.image = [photos firstObject];
+    
+}
+
+
+
+
+    
+    /*
     //根据label反算view
     
     UIView * view = [[UIView alloc]init];
@@ -210,11 +295,11 @@
 
 
 
-
+/*
 -(const char *)UnicodeToISO88591:(NSString *)src
 {
     NSStringEncoding enc =  CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingISOLatin1);
     return [src cStringUsingEncoding:enc];
 }
-
+*/
 @end
